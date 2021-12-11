@@ -7,7 +7,8 @@ static bitset<32> f(bitset<32> R, bitset<48> k); //密码函数（乘积变换�
 static bitset<28> leftShift(bitset<28> k, int shift); //对56位密钥的前后部分进行左移
 static bitset<64> charToBitset(const char s[8]); //将char字符数组转为二进制
 static string bitsetToString(bitset<64> bits); //将二进制转为字符串
-
+static string encryptOnce(bitset<64>& plain); //单次64位加密
+static string decryptOnce(bitset<64>& cipher); //单次64位解密
 
 // 初始置换表
 int IP[] = {58, 50, 42, 34, 26, 18, 10, 2,
@@ -130,9 +131,8 @@ int P[] = {16,  7, 20, 21,
  
 /*                            下面是DES算法实现                         */ 
 
-/**
- *  密码函数（乘积变换）f，接收32位数据和48位子密钥，产生一个32位的输出            
- */
+
+// 密码函数（乘积变换）f，接收32位数据和48位子密钥，产生一个32位的输出            
 bitset<32> f(bitset<32> R, bitset<48> k)
 {
 	bitset<48> expandR;
@@ -164,9 +164,7 @@ bitset<32> f(bitset<32> R, bitset<48> k)
 	return output;
 }
  
-/**
- *  对56位密钥的前后部分进行左移
- */
+// 对56位密钥的前后部分进行左移
 bitset<28> leftShift(bitset<28> k, int shift)
 {
 	bitset<28> tmp = k;
@@ -180,9 +178,7 @@ bitset<28> leftShift(bitset<28> k, int shift)
 	return k;
 }
 
-/**
- *  工具函数：将char字符数组转为二进制
- */
+//工具函数：将char字符数组转为二进制（64位）
 bitset<64> charToBitset(const char s[8])
 {
 	bitset<64> bits;
@@ -191,9 +187,8 @@ bitset<64> charToBitset(const char s[8])
 			bits[i*8+j] = ((s[i]>>j) & 1);
 	return bits;
 }
-/**
- *  工具函数：将二进制转为字符串
- */
+
+// 工具函数：将（64位）二进制转为字符串
 string bitsetToString(bitset<64> bits)
 {
 	char *s;
@@ -204,23 +199,10 @@ string bitsetToString(bitset<64> bits)
 	return result;
 }
 
-/**
- *  初始化，得到明文（或密文）和密钥
- */
-void init(string& s,string& k,int &pattern)
+// 生成16个48位的子密钥
+void generateKeys(string& k) 
 {
-    if(pattern==0) //加密模式
-        plain = charToBitset(s.c_str()); //生成明文
-    else //解密模式
-        cipher = charToBitset(s.c_str()); //生成密文
-	key = charToBitset(k.c_str());
-}
-
-/**
- *  生成16个48位的子密钥
- */
-void generateKeys() 
-{
+	bitset<64> key = charToBitset(k.c_str()); //64位密钥
 	bitset<56> realKey;
 	bitset<28> left;
 	bitset<28> right;
@@ -247,15 +229,14 @@ void generateKeys()
 			realKey[i] = right[i];
 		for(int i=0; i<48; ++i)
 			compressKey[47-i] = realKey[56 - PC_2[i]];
-		subKey[round] = compressKey;
+		g_sub_key[round] = compressKey;
 	}
 }
-  
-/**
- *  DES加密
- */
-string encrypt(bitset<64>& plain)
+
+// 单次DES加密（64位）
+string encryptOnce(string s)
 {
+	bitset<64> plain = charToBitset(s.c_str());
 	string result;
 	bitset<64> temp_cipher;
 	bitset<64> current_bits;
@@ -274,7 +255,7 @@ string encrypt(bitset<64>& plain)
 	for(int round=0; round<16; ++round)
 	{
 		new_left = right;
-		right = left ^ f(right,subKey[round]);
+		right = left ^ f(right,g_sub_key[round]);
 		left = new_left;
 	}
 	// 第四步：合并L32和R32，注意合并为 R32L32
@@ -286,17 +267,15 @@ string encrypt(bitset<64>& plain)
 	current_bits = temp_cipher;
 	for(int i=0; i<64; ++i)
 		temp_cipher[63-i] = current_bits[64-IP_1[i]];
-	result=bitsetToString(temp_cipher);
 	// 返回密文
-	return result;
+	return temp_cipher.to_string();
 }
  
-/**
- *  DES解密
- */
-string decrypt(bitset<64>& cipher)
+// 单次DES解密（64位）
+string decryptOnce(string s)
 {
 	string result;
+	bitset<64> cipher(s);
 	bitset<64> temp_plain;
 	bitset<64> current_bits;
 	bitset<32> left;
@@ -314,7 +293,7 @@ string decrypt(bitset<64>& cipher)
 	for(int round=0; round<16; ++round)
 	{
 		new_left = right;
-		right = left ^ f(right,subKey[15-round]);
+		right = left ^ f(right,g_sub_key[15-round]);
 		left = new_left;
 	}
 	// 第四步：合并L32和R32，注意合并为 R32L32
@@ -330,4 +309,40 @@ string decrypt(bitset<64>& cipher)
 	result=bitsetToString(temp_plain);
 	// 返回明文
 	return result;
+}
+
+// 加密函数（目标：字符串）
+string encrypt(string &s)
+{
+	string result="";
+	string sub_s; 
+	int len=s.length();
+	for(int i=0;i<len;i+=8)
+	{
+		sub_s=s.substr(i,8);
+		result+=encryptOnce(sub_s);
+	}
+	return result;
+}
+// 解密函数（目标：二进制字符串）
+string decrypt(string &s)
+{
+	string result="";
+	string sub_s; 
+	int len=s.length();
+	for(int i=0;i<len;i+=64)
+	{
+		sub_s=s.substr(i,64);
+		result+=decryptOnce(sub_s);
+	}
+	int pos=len/8; //'\00'的最先位置
+	for(int i=len-1;i>=0;i--)
+	{
+		if(result[i]!='\00')
+		{
+			pos=i+1;
+			break;
+		}
+	}
+	return result.substr(0,pos);
 }
