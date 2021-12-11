@@ -336,7 +336,7 @@ string decrypt(string &s)
 		result+=decryptOnce(sub_s);
 	}
 	int pos=len/8; //'\00'的最先位置
-	for(int i=len-1;i>=0;i--)
+	for(int i=len/8-1;i>=0;i--)
 	{
 		if(result[i]!='\00')
 		{
