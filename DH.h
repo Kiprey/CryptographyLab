@@ -1,9 +1,16 @@
 #ifndef DH_H
 #define DH_H
 #include <iostream>
-#include <openssl/rsa.h>
-#include <openssl/bn.h>
+#include <openssl/err.h>
 using namespace std;
+
+#define OPENSSL_ASSERT(x)                   \
+    do {                                    \
+        if(!(x)) {                          \
+            ERR_print_errors_fp(stderr);    \
+            abort();                        \
+        }                                   \
+    } while(0)
 
 /**
  * @brief base64 编码

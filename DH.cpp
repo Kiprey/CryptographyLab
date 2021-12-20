@@ -99,12 +99,12 @@ bool Auth_DH::server_exchange_key()
     // 指定 e 为 0x10001
     BIGNUM *e = BN_new();
     ret = BN_set_word(e, RSA_F4);
-    assert(ret);
+    OPENSSL_ASSERT(ret);
 
     // 指定 RSA 密钥长度, callback 为空
     RSA *rsa_key = RSA_new();
     ret = RSA_generate_key_ex(rsa_key, 2048, e, NULL);
-    assert(ret);
+    OPENSSL_ASSERT(ret);
     BN_free(e);
 
     // 获取序列化后的公钥
@@ -113,7 +113,7 @@ bool Auth_DH::server_exchange_key()
     // 获取长度并将密钥对读取到字符串
     size_t pub_len = BIO_pending(pub);
     ret = BIO_read(pub, buf, pub_len);
-    assert(ret);
+    OPENSSL_ASSERT(ret);
     BIO_free_all(pub);
 
     // 1. 发送公钥
@@ -124,11 +124,11 @@ bool Auth_DH::server_exchange_key()
     string msg = recv_msg(_fd, NUM1_START_FLAG, NUM1_END_FLAG);
     // 解密
     ret = RSA_private_decrypt(msg.size(), (u_char *)msg.c_str(), (u_char *)buf, rsa_key, RSA_PKCS1_PADDING);
-    assert(ret);
+    OPENSSL_ASSERT(ret);
     cout << "[INFO] 接收的 DH 公钥：" << get_msg_digest(string(buf, ret)) << endl;
     BIGNUM *g_ra_bn = BN_new();
     const BIGNUM* ret_bn = BN_bin2bn((u_char*)buf, ret, g_ra_bn);
-    assert(ret_bn == g_ra_bn);
+    OPENSSL_ASSERT(ret_bn == g_ra_bn);
 
     // 3. 生成 rb, 并发送 g^rb mod p
     // 首先生成公共 G 和 P
@@ -136,19 +136,19 @@ bool Auth_DH::server_exchange_key()
     DH* privkey = DH_get_1024_160();
     // 生成私钥
     ret = DH_generate_key(privkey);
-    assert(ret);
+    OPENSSL_ASSERT(ret);
 
     // 将 公钥 序列化
     const BIGNUM* g_rb_bn = DH_get0_pub_key(privkey);
 
     ret = BN_bn2bin(g_rb_bn, (u_char*)buf);
-    assert(ret);
+    OPENSSL_ASSERT(ret);
     string g_rb_str(buf, ret);
     cout << "[INFO] 发送的 DH 公钥：" << get_msg_digest(g_rb_str) << endl;
     // 用私钥加密
     assert(g_rb_str.size() <= RSA_size(rsa_key) - 11);
     ret = RSA_private_encrypt(g_rb_str.size(), (u_char *)g_rb_str.c_str(), (u_char *)buf, rsa_key, RSA_PKCS1_PADDING);
-    assert(ret >= 0);
+    OPENSSL_ASSERT(ret >= 0);
 
     // 将加密内容发送
     string rb_msg(buf, ret);
@@ -180,9 +180,9 @@ bool Auth_DH::client_exchange_key()
 
     BIO *bio = BIO_new(BIO_s_mem());
     ret = BIO_puts(bio, msg.c_str());
-    assert(ret);
+    OPENSSL_ASSERT(ret);
     RSA *pub_rsa_key = PEM_read_bio_RSAPublicKey(bio, nullptr, nullptr, nullptr);
-    assert(pub_rsa_key);
+    OPENSSL_ASSERT(pub_rsa_key);
     BIO_free_all(bio);
 
     // 2. 生成 g^ra
@@ -190,19 +190,19 @@ bool Auth_DH::client_exchange_key()
     DH* privkey = DH_get_1024_160();
     // 之后生成私钥 ra
     ret = DH_generate_key(privkey);
-    assert(ret);
+    OPENSSL_ASSERT(ret);
     // 生成 G^ra mod p
     const BIGNUM *DH_RA_bn = DH_get0_pub_key(privkey);
 
     // 将 DH_RA_bn 序列化
     ret = BN_bn2bin(DH_RA_bn, (u_char*)buf);
-    assert(ret);
+    OPENSSL_ASSERT(ret);
     string g_ra_str(buf, ret);
     cout << "[INFO] 发送的 DH 公钥：" << get_msg_digest(g_ra_str) << endl;
     // 用公钥加密
     assert(g_ra_str.size() <= RSA_size(pub_rsa_key) - 11);
     ret = RSA_public_encrypt(g_ra_str.size(), (u_char *)g_ra_str.c_str(), (u_char *)buf, pub_rsa_key, RSA_PKCS1_PADDING);
-    assert(ret >= 0);
+    OPENSSL_ASSERT(ret >= 0);
 
     // 将加密内容发送
     string ra_msg(buf, ret);
@@ -211,11 +211,11 @@ bool Auth_DH::client_exchange_key()
     // 3. 接收 g^rb mod p
     msg = recv_msg(_fd, NUM2_START_FLAG, NUM2_END_FLAG);
     ret = RSA_public_decrypt(msg.size(), (u_char *)msg.c_str(), (u_char *)buf, pub_rsa_key, RSA_PKCS1_PADDING);
-    assert(ret);
+    OPENSSL_ASSERT(ret);
     cout << "[INFO] 接收的 DH 公钥：" << get_msg_digest(string(buf, ret)) << endl;
     BIGNUM *g_rb_bn = BN_new();
     const BIGNUM* ret_bn = BN_bin2bn((u_char*)buf, ret, g_rb_bn);
-    assert(ret_bn == g_rb_bn);
+    OPENSSL_ASSERT(ret_bn == g_rb_bn);
 
     // 4. 构建 g^(ra * rb) mod p
     char key[DH_size(privkey)];
