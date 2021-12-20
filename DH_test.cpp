@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     // 服务端 [usage] ./DH_test <port>
     if (argc == 2)
     {
+        cout << "[SERVER]： 监听端口 " << argv[1] << " ..." << endl;
         int server_fd = socketBindAndListen(atoi(argv[1]));
         if (server_fd < 0)
             SYS_ERR("socketBindAndListen");
@@ -44,9 +45,9 @@ int main(int argc, char *argv[])
         close(server_fd);
     }
     // 客户端 [usage] ./DH_test <ip> <port>
-    else
+    else if(argc == 3)
     {
-        assert(argc > 2);
+        cout << "[CLIENT]： 尝试连接 " << argv[1] << ":" << argv[2] << " ..." << endl;
         int client_fd = connect2Server(argv[1], atoi(argv[2]));
         if(client_fd < -1)
             SYS_ERR("connect2Server");
@@ -63,6 +64,10 @@ int main(int argc, char *argv[])
         dh_service.send(END_MSG);
 
         close(client_fd);
+    }
+    else {
+        cout << "服务端 [usage] " << argv[0] << " <port>" << endl;
+        cout << "客户端 [usage] " << argv[0] << " <ip> <port>" << endl;
     }
 
     return 0;
