@@ -52,11 +52,6 @@ class Auth_DH {
 private:
     int _fd;
     string _shared_key;
-
-    // 单个 ra / rb 长度
-    static constexpr size_t SINGLE_KEY_LEN = 512; 
-    // RSA 密钥长度
-    static constexpr size_t RSA_BITS_NUM = 1024;
 public:
     // 创建 DH 协议通信
     Auth_DH(int fd);

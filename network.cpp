@@ -53,7 +53,9 @@ int connect2Server(const char *ip, int port)
     if (inet_aton(ip, &sock_addr.sin_addr) == 0)
         return -1;
     // 最后连接
-    return connect(fd, (const struct sockaddr *)&sock_addr, sizeof(struct sockaddr)); //建立连接
+    if(connect(fd, (const struct sockaddr *)&sock_addr, sizeof(struct sockaddr)) == -1)
+        return -1;
+    return fd;
 }
 
 void handleSIGPIPE()

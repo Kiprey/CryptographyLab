@@ -103,7 +103,7 @@ bool Auth_DH::server_exchange_key()
 
     // 指定 RSA 密钥长度, callback 为空
     RSA *rsa_key = RSA_new();
-    ret = RSA_generate_key_ex(rsa_key, RSA_BITS_NUM, e, NULL);
+    ret = RSA_generate_key_ex(rsa_key, 2048, e, NULL);
     assert(ret);
     BN_free(e);
 
@@ -125,14 +125,15 @@ bool Auth_DH::server_exchange_key()
     // 解密
     ret = RSA_private_decrypt(msg.size(), (u_char *)msg.c_str(), (u_char *)buf, rsa_key, RSA_PKCS1_PADDING);
     assert(ret);
-    cout << "[INFO] 接收 Client 的 DH 公钥：" << get_msg_digest(buf) << endl;
+    cout << "[INFO] 接收的 DH 公钥：" << get_msg_digest(string(buf, ret)) << endl;
     BIGNUM *g_ra_bn = BN_new();
-    ret = BN_hex2bn(&g_ra_bn, buf);
-    assert(ret > 0);
+    const BIGNUM* ret_bn = BN_bin2bn((u_char*)buf, ret, g_ra_bn);
+    assert(ret_bn == g_ra_bn);
 
     // 3. 生成 rb, 并发送 g^rb mod p
     // 首先生成公共 G 和 P
-    DH* privkey = DH_get_2048_256();
+    /// NOTE: 注意公钥长度不能大于 RSA 密钥长度
+    DH* privkey = DH_get_1024_160();
     // 生成私钥
     ret = DH_generate_key(privkey);
     assert(ret);
@@ -140,12 +141,13 @@ bool Auth_DH::server_exchange_key()
     // 将 公钥 序列化
     const BIGNUM* g_rb_bn = DH_get0_pub_key(privkey);
 
-    char *rb_hex = BN_bn2hex(g_rb_bn);
-    cout << "[INFO] 发送 Server 的 DH 公钥：" << get_msg_digest(rb_hex) << endl;
+    ret = BN_bn2bin(g_rb_bn, (u_char*)buf);
+    assert(ret);
+    string g_rb_str(buf, ret);
+    cout << "[INFO] 发送的 DH 公钥：" << get_msg_digest(g_rb_str) << endl;
     // 用私钥加密
-    assert(strlen(rb_hex) <= RSA_size(rsa_key));
-    ret = RSA_private_encrypt(RSA_size(rsa_key) - 11, (u_char *)rb_hex, (u_char *)buf, rsa_key, RSA_PKCS1_PADDING);
-    OPENSSL_free(rb_hex);
+    assert(g_rb_str.size() <= RSA_size(rsa_key) - 11);
+    ret = RSA_private_encrypt(g_rb_str.size(), (u_char *)g_rb_str.c_str(), (u_char *)buf, rsa_key, RSA_PKCS1_PADDING);
     assert(ret >= 0);
 
     // 将加密内容发送
@@ -163,7 +165,7 @@ bool Auth_DH::server_exchange_key()
     DH_free(privkey);
 
     // 输出共享密钥
-    cout << "[INFO] 共享密钥 md5：" << get_msg_digest(_shared_key) << endl;
+    cout << "[INFO] 共享密钥：" << get_msg_digest(_shared_key) << endl;
     
     return true;
 }
@@ -185,7 +187,7 @@ bool Auth_DH::client_exchange_key()
 
     // 2. 生成 g^ra
     // 首先生成 G 和 P
-    DH* privkey = DH_get_2048_256();
+    DH* privkey = DH_get_1024_160();
     // 之后生成私钥 ra
     ret = DH_generate_key(privkey);
     assert(ret);
@@ -193,12 +195,13 @@ bool Auth_DH::client_exchange_key()
     const BIGNUM *DH_RA_bn = DH_get0_pub_key(privkey);
 
     // 将 DH_RA_bn 序列化
-    char *ra_hex = BN_bn2hex(DH_RA_bn);
-    cout << "[INFO] 发送 Client 的 DH 公钥：" << get_msg_digest(ra_hex) << endl;
+    ret = BN_bn2bin(DH_RA_bn, (u_char*)buf);
+    assert(ret);
+    string g_ra_str(buf, ret);
+    cout << "[INFO] 发送的 DH 公钥：" << get_msg_digest(g_ra_str) << endl;
     // 用公钥加密
-    assert(strlen(ra_hex) <= RSA_size(pub_rsa_key));
-    ret = RSA_public_encrypt(RSA_size(pub_rsa_key) - 11, (u_char *)ra_hex, (u_char *)buf, pub_rsa_key, RSA_PKCS1_PADDING);
-    OPENSSL_free(ra_hex);
+    assert(g_ra_str.size() <= RSA_size(pub_rsa_key) - 11);
+    ret = RSA_public_encrypt(g_ra_str.size(), (u_char *)g_ra_str.c_str(), (u_char *)buf, pub_rsa_key, RSA_PKCS1_PADDING);
     assert(ret >= 0);
 
     // 将加密内容发送
@@ -209,10 +212,10 @@ bool Auth_DH::client_exchange_key()
     msg = recv_msg(_fd, NUM2_START_FLAG, NUM2_END_FLAG);
     ret = RSA_public_decrypt(msg.size(), (u_char *)msg.c_str(), (u_char *)buf, pub_rsa_key, RSA_PKCS1_PADDING);
     assert(ret);
-    cout << "[INFO] 接收 Server 的 DH 公钥：" << get_msg_digest(buf) << endl;
+    cout << "[INFO] 接收的 DH 公钥：" << get_msg_digest(string(buf, ret)) << endl;
     BIGNUM *g_rb_bn = BN_new();
-    ret = BN_hex2bn(&g_rb_bn, buf);
-    assert(ret > 0);
+    const BIGNUM* ret_bn = BN_bin2bn((u_char*)buf, ret, g_rb_bn);
+    assert(ret_bn == g_rb_bn);
 
     // 4. 构建 g^(ra * rb) mod p
     char key[DH_size(privkey)];
