@@ -3,7 +3,6 @@
 #include <iostream>
 using namespace std;
 
-bitset<48> g_sub_key[16];        // 存放16轮子密钥
 void generateKeys(string& k);    // 生成子密钥
 // 由于密文转字符容易乱码。故明文为普通字符串，密文为二进制位组成的字符串
 string encrypt(string &s);       // 加密函数

@@ -2,7 +2,7 @@
 #include <fstream>
 #include <bitset>
 #include <string>
-#include "DES.cpp"
+#include "DES.h"
 using namespace std;
 int main() 
 {

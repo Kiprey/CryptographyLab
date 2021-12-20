@@ -3,6 +3,7 @@
 #include "DES.h"
 using namespace std;
 
+static bitset<48> g_sub_key[16];        // 存放16轮子密钥
 static bitset<32> f(bitset<32> R, bitset<48> k); //密码函数（乘积变换）f
 static bitset<28> leftShift(bitset<28> k, int shift); //对56位密钥的前后部分进行左移
 static bitset<64> charToBitset(const char s[8]); //将char字符数组转为二进制
