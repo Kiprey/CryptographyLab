@@ -1,3 +1,6 @@
+#ifndef NETWORK_H
+#define NETWORK_H
+
 #include <iostream>
 using namespace std;
 
@@ -24,3 +27,5 @@ void handleSIGPIPE();
 
 void send_msg(int fd, string msg, const char* start_flag, const char* end_flag);
 string recv_msg(int fd, const char* start_flag, const char* end_flag);
+
+#endif

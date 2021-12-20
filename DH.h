@@ -24,12 +24,12 @@ string md5_encode(const string& input);
 /**
  *  @brief 使用 RC4 进行加密
  */
-string rc4_encrypt(const string &data, const char *pass);
+string rc4_encrypt(const string &data, const string& pass);
 
 /**
  *  @brief 使用 RC4 进行解密
  */
-string rc4_decrypt(const string &outdata, const char *pass);
+string rc4_decrypt(const string &outdata, const string& pass);
 
 /**
  * @brief 带有以下几种功能的 DH 通信协议
@@ -51,15 +51,7 @@ string rc4_decrypt(const string &outdata, const char *pass);
 class Auth_DH {
 private:
     int _fd;
-    BIGNUM* _shared_key;
-
-     // 这里约定 p
-    static constexpr size_t P_base = 2;
-    static constexpr size_t P_exp = 512;
-    // 这里约定 G;
-    static constexpr size_t G = 11;     
-
-    void _generate_G_and_P(BIGNUM **G_bn, BIGNUM **P_bn, BN_CTX *ctx);
+    string _shared_key;
 
     // 单个 ra / rb 长度
     static constexpr size_t SINGLE_KEY_LEN = 512; 
