@@ -95,8 +95,10 @@ string recv_msg(int fd, const char* start_flag, const char* end_flag) {
     // 检测消息完整
     const size_t start_flag_len = strlen(start_flag);
     const size_t end_flag_len = strlen(end_flag);
-    assert(msg.substr(0, start_flag_len) == start_flag);
-    assert(msg.substr(msg.size() - end_flag_len) == end_flag);
+    
+    // 如果头部尾部的 FLAG 没有配对，则说明远程服务器中断了连接
+    if(msg.substr(0, start_flag_len) != start_flag || msg.substr(msg.size() - end_flag_len) != end_flag)
+        return "";
     // 返回除去消息头的信息
     return msg.substr(start_flag_len, msg.size() - end_flag_len - start_flag_len);
 }

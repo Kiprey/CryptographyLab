@@ -79,8 +79,11 @@ static string get_msg_digest(const string& data) {
 }
 
 Auth_DH::Auth_DH(int fd)
-    : _fd(fd), _shared_key(){};
-Auth_DH::~Auth_DH() {}
+    : _fd(fd), _shared_key(), _local_privkey(RSA_new()), _remote_pubkey(RSA_new()) {};
+Auth_DH::~Auth_DH() {
+    RSA_free(_local_privkey);
+    RSA_free(_remote_pubkey);
+}
 
 bool Auth_DH::server_exchange_key()
 {
@@ -89,41 +92,53 @@ bool Auth_DH::server_exchange_key()
     // 一个用于接收函数返回值的变量
     ssize_t ret;
 
-    /**
-     * 1. 双方创建随机数 ra 和 rb
-     * 2. 服务端创建公钥私钥，并发送公钥给客户端（这一步省略了客户端去验证公钥证书有效性）
-     * 3. 客户端使用该公钥发送加密 g^ra 并发送给服务端
-     * 4. 服务端使用私钥加密并用公钥解开
-     */
-    // 创建 RSA 密钥（因为只有服务端才会准备 RSA 密钥）
+    // 创建 RSA 密钥
     // 指定 e 为 0x10001
     BIGNUM *e = BN_new();
     ret = BN_set_word(e, RSA_F4);
     OPENSSL_ASSERT(ret);
 
     // 指定 RSA 密钥长度, callback 为空
-    RSA *rsa_key = RSA_new();
-    ret = RSA_generate_key_ex(rsa_key, 2048, e, NULL);
+    ret = RSA_generate_key_ex(_local_privkey, RSA_KEY_LEN, e, NULL);
     OPENSSL_ASSERT(ret);
     BN_free(e);
 
     // 获取序列化后的公钥
     BIO *pub = BIO_new(BIO_s_mem());
-    PEM_write_bio_RSAPublicKey(pub, rsa_key);
+    PEM_write_bio_RSAPublicKey(pub, _local_privkey);
     // 获取长度并将密钥对读取到字符串
     size_t pub_len = BIO_pending(pub);
     ret = BIO_read(pub, buf, pub_len);
     OPENSSL_ASSERT(ret);
     BIO_free_all(pub);
 
-    // 1. 发送公钥
+    // 1. 交换公钥
     string pub_msg(buf, pub_len);
     cout << "[INFO] 发送的服务器公钥：" << get_msg_digest(pub_msg) << endl;
-    send_msg(_fd, pub_msg, RSA_PUB_MSG_START_FLAG, RSA_PUB_MSG_END_FLAG);
+    send_msg(_fd, pub_msg, RSA_PUB1_MSG_START_FLAG, RSA_PUB1_MSG_END_FLAG);
+    
+    string msg = recv_msg(_fd, RSA_PUB2_MSG_START_FLAG, RSA_PUB2_MSG_END_FLAG);
+    if(msg.empty()) {
+        cout << "[INFO] 连接已断开" << endl;
+        exit(EXIT_FAILURE);
+    }
+    cout << "[INFO] 接收的客户端公钥：" << get_msg_digest(msg) << endl;
+
+    BIO *bio = BIO_new(BIO_s_mem());
+    ret = BIO_puts(bio, msg.c_str());
+    OPENSSL_ASSERT(ret);
+    void* ret_p = PEM_read_bio_RSAPublicKey(bio, &_remote_pubkey, nullptr, nullptr);
+    OPENSSL_ASSERT(ret_p == _remote_pubkey);
+    BIO_free_all(bio);
+
     // 2. 接收被发送方加密后的第一个数 g^ra mod p
-    string msg = recv_msg(_fd, NUM1_START_FLAG, NUM1_END_FLAG);
+    msg = recv_msg(_fd, NUM1_START_FLAG, NUM1_END_FLAG);
+    if(msg.empty()) {
+        cout << "[INFO] 连接已断开" << endl;
+        exit(EXIT_FAILURE);
+    }
     // 解密
-    ret = RSA_private_decrypt(msg.size(), (u_char *)msg.c_str(), (u_char *)buf, rsa_key, RSA_PKCS1_PADDING);
+    ret = RSA_private_decrypt(msg.size(), (u_char *)msg.c_str(), (u_char *)buf, _local_privkey, RSA_PKCS1_PADDING);
     OPENSSL_ASSERT(ret);
     cout << "[INFO] 接收的 DH 公钥：" << get_msg_digest(string(buf, ret)) << endl;
     BIGNUM *g_ra_bn = BN_new();
@@ -133,7 +148,7 @@ bool Auth_DH::server_exchange_key()
     // 3. 生成 rb, 并发送 g^rb mod p
     // 首先生成公共 G 和 P
     /// NOTE: 注意公钥长度不能大于 RSA 密钥长度
-    DH* privkey = DH_get_1024_160();
+    DH* privkey = DH_param_func();
     // 生成私钥
     ret = DH_generate_key(privkey);
     OPENSSL_ASSERT(ret);
@@ -146,8 +161,8 @@ bool Auth_DH::server_exchange_key()
     string g_rb_str(buf, ret);
     cout << "[INFO] 发送的 DH 公钥：" << get_msg_digest(g_rb_str) << endl;
     // 用私钥加密
-    assert(g_rb_str.size() <= RSA_size(rsa_key) - 11);
-    ret = RSA_private_encrypt(g_rb_str.size(), (u_char *)g_rb_str.c_str(), (u_char *)buf, rsa_key, RSA_PKCS1_PADDING);
+    assert(g_rb_str.size() <= RSA_size(_remote_pubkey) - 11);
+    ret = RSA_public_encrypt(g_rb_str.size(), (u_char *)g_rb_str.c_str(), (u_char *)buf, _remote_pubkey, RSA_PKCS1_PADDING);
     OPENSSL_ASSERT(ret >= 0);
 
     // 将加密内容发送
@@ -160,7 +175,6 @@ bool Auth_DH::server_exchange_key()
     _shared_key = string(key, DH_size(privkey));
 
     // 清除密钥
-    RSA_free(rsa_key);
     BN_free(g_ra_bn);
     DH_free(privkey);
 
@@ -174,20 +188,50 @@ bool Auth_DH::client_exchange_key()
 {
     ssize_t ret;
     char buf[2048];
+
+    // 创建 RSA 密钥
+    // 指定 e 为 0x10001
+    BIGNUM *e = BN_new();
+    ret = BN_set_word(e, RSA_F4);
+    OPENSSL_ASSERT(ret);
+
+    // 指定 RSA 密钥长度, callback 为空
+    ret = RSA_generate_key_ex(_local_privkey, RSA_KEY_LEN, e, NULL);
+    OPENSSL_ASSERT(ret);
+    BN_free(e);
+
+    // 获取序列化后的公钥
+    BIO *pub = BIO_new(BIO_s_mem());
+    PEM_write_bio_RSAPublicKey(pub, _local_privkey);
+    // 获取长度并将密钥对读取到字符串
+    size_t pub_len = BIO_pending(pub);
+    ret = BIO_read(pub, buf, pub_len);
+    OPENSSL_ASSERT(ret);
+    BIO_free_all(pub);
+    string pub_msg(buf, pub_len);
+
     // 1. 接收服务器公钥
-    string msg = recv_msg(_fd, RSA_PUB_MSG_START_FLAG, RSA_PUB_MSG_END_FLAG);
+    string msg = recv_msg(_fd, RSA_PUB1_MSG_START_FLAG, RSA_PUB1_MSG_END_FLAG);
+    if(msg.empty()) {
+        cout << "[INFO] 连接已断开" << endl;
+        exit(EXIT_FAILURE);
+    }
     cout << "[INFO] 接收的服务器公钥：" << get_msg_digest(msg) << endl;
 
     BIO *bio = BIO_new(BIO_s_mem());
     ret = BIO_puts(bio, msg.c_str());
     OPENSSL_ASSERT(ret);
-    RSA *pub_rsa_key = PEM_read_bio_RSAPublicKey(bio, nullptr, nullptr, nullptr);
-    OPENSSL_ASSERT(pub_rsa_key);
+    void* ret_p = PEM_read_bio_RSAPublicKey(bio, &_remote_pubkey, nullptr, nullptr);
+    OPENSSL_ASSERT(ret_p == _remote_pubkey);
     BIO_free_all(bio);
+
+    // 发送自己的公钥
+    cout << "[INFO] 发送的客户端公钥：" << get_msg_digest(pub_msg) << endl;
+    send_msg(_fd, pub_msg, RSA_PUB2_MSG_START_FLAG, RSA_PUB2_MSG_END_FLAG);
 
     // 2. 生成 g^ra
     // 首先生成 G 和 P
-    DH* privkey = DH_get_1024_160();
+    DH* privkey = DH_param_func();
     // 之后生成私钥 ra
     ret = DH_generate_key(privkey);
     OPENSSL_ASSERT(ret);
@@ -200,8 +244,8 @@ bool Auth_DH::client_exchange_key()
     string g_ra_str(buf, ret);
     cout << "[INFO] 发送的 DH 公钥：" << get_msg_digest(g_ra_str) << endl;
     // 用公钥加密
-    assert(g_ra_str.size() <= RSA_size(pub_rsa_key) - 11);
-    ret = RSA_public_encrypt(g_ra_str.size(), (u_char *)g_ra_str.c_str(), (u_char *)buf, pub_rsa_key, RSA_PKCS1_PADDING);
+    assert(g_ra_str.size() <= RSA_size(_remote_pubkey) - 11);
+    ret = RSA_public_encrypt(g_ra_str.size(), (u_char *)g_ra_str.c_str(), (u_char *)buf, _remote_pubkey, RSA_PKCS1_PADDING);
     OPENSSL_ASSERT(ret >= 0);
 
     // 将加密内容发送
@@ -210,7 +254,11 @@ bool Auth_DH::client_exchange_key()
 
     // 3. 接收 g^rb mod p
     msg = recv_msg(_fd, NUM2_START_FLAG, NUM2_END_FLAG);
-    ret = RSA_public_decrypt(msg.size(), (u_char *)msg.c_str(), (u_char *)buf, pub_rsa_key, RSA_PKCS1_PADDING);
+    if(msg.empty()) {
+        cout << "[INFO] 连接已断开" << endl;
+        exit(EXIT_FAILURE);
+    }
+    ret = RSA_private_decrypt(msg.size(), (u_char *)msg.c_str(), (u_char *)buf, _local_privkey, RSA_PKCS1_PADDING);
     OPENSSL_ASSERT(ret);
     cout << "[INFO] 接收的 DH 公钥：" << get_msg_digest(string(buf, ret)) << endl;
     BIGNUM *g_rb_bn = BN_new();
@@ -223,7 +271,6 @@ bool Auth_DH::client_exchange_key()
     _shared_key = string(key, DH_size(privkey));
 
     // 清除公钥
-    RSA_free(pub_rsa_key);
     BN_free(g_rb_bn);
     DH_free(privkey);
 
@@ -235,35 +282,51 @@ bool Auth_DH::client_exchange_key()
 
 void Auth_DH::send(string msg)
 {
+    char buf[2048];
     assert(!msg.empty());
     /**
-     * 发送方 A 构建子串 E_k(m) || H(m || key)
+     * 发送方 A 构建子串 E_k(m) || Sig(H(m))
      * 可以验证信息确实来源于一个保存正确 key 的终端
      */
-    string H_mkey = md5_encode(msg + _shared_key);
-    cout << "[MSG] send md5(msg || key)：" << base64Encode(H_mkey, false) << endl;
-    assert(H_mkey.size() == 16);
+    string H_m = md5_encode(msg);
+    ssize_t ret = RSA_private_encrypt(H_m.size(), (u_char *)H_m.c_str(), (u_char *)buf, _local_privkey, RSA_PKCS1_PADDING);
+    OPENSSL_ASSERT(ret);
+    string Sig = string(buf, ret);
+    assert(Sig.size() == RSA_KEY_LEN / 8);
+
     string e_km = rc4_encrypt(msg, _shared_key);
-    send_msg(_fd, e_km + H_mkey, COM_START_FLAG, COM_END_FLAG);
+    send_msg(_fd, e_km + Sig, COM_START_FLAG, COM_END_FLAG);
 }
 
 string Auth_DH::recv(void)
 {
+    char buf[2048];
     /**
      * 接收方验证 消息完整性和消息来源
      */
     string msg = recv_msg(_fd, COM_START_FLAG, COM_END_FLAG);
-    assert(msg.size() >= 16);
-    string H_mkey = msg.substr(msg.size() - 16);
-    string e_km = msg.substr(0, msg.size() - 16);
+    
+    size_t sig_len = RSA_KEY_LEN / 8;
+    if(msg.size() < sig_len) {
+        cout << "[MSG] ERR! msg too short." << endl;
+        return "";
+    }
+    string Sig = msg.substr(msg.size() - sig_len);
+    string e_km = msg.substr(0, msg.size() - sig_len);
+
+    ssize_t ret = RSA_public_decrypt(Sig.size(), (u_char *)Sig.c_str(), (u_char *)buf, _remote_pubkey, RSA_PKCS1_PADDING);
+    if(ret <= 0) {
+        cout << "[MSG] ERR! Signature mismatch." << endl;
+        return "";
+    }
+    string recv_H_m = string(buf, ret);
 
     string msg_content = rc4_decrypt(e_km, _shared_key);
-    string curr_H_mkey = md5_encode(msg_content + _shared_key);
-    cout << "[MSG] recv md5(msg || key)：" << base64Encode(H_mkey, false) << endl;
+    string curr_H_m = md5_encode(msg_content);
 
     // 验证
-    if(curr_H_mkey != H_mkey) {
-        cout << "[MSG] ERR! md5 mismatch. calc md5(msg || key)：" << base64Encode(curr_H_mkey, false) << endl;
+    if(curr_H_m != recv_H_m) {
+        cout << "[MSG] ERR! md5 mismatch." << endl;
         return "";
     }
     return msg_content;

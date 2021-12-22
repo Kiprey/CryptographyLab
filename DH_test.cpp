@@ -56,10 +56,12 @@ int main(int argc, char *argv[])
         dh_service.client_exchange_key();
 
         string str;
+        cout << "[Input from CLIENT] ";
         while(cin >> str) {
             dh_service.send(str);
             str = dh_service.recv();
             cout << "[MSG from SERVER] " << str << endl;
+            cout << "[Input from CLIENT] ";
         }
         dh_service.send(END_MSG);
 
