@@ -28,7 +28,8 @@ MESSAGE(STATUS "----------------------------")
 set(CMAKE_C_COMPILER "/usr/bin/gcc")
 set(CMAKE_CXX_COMPILER "/usr/bin/g++")
 
-add_executable(DES_test DES.cpp DES.h DES_test.cpp)
+set(DES_SRC DES.cpp DES.h)
+add_executable(DES_test DES_test.cpp ${DES_SRC})
 target_link_libraries(DES_test ${CMAKE_DL_LIBS})
 
 add_executable(DH_test network.cpp network.h DH.cpp DH.h DH_test.cpp)
@@ -36,3 +37,5 @@ target_link_libraries(DH_test crypto ${CMAKE_DL_LIBS})
 
 add_executable(SSL_test network.cpp network.h SSL_test.cpp)
 target_link_libraries(SSL_test crypto ssl ${CMAKE_DL_LIBS})
+
+add_library(cryptolab SHARED libso.cpp ${DES_SRC} )

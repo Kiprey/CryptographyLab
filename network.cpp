@@ -68,13 +68,13 @@ void handleSIGPIPE()
         perror("Ignore SIGPIPE");
 }
 
-void send_msg(int fd, string msg, const char* start_flag, const char* end_flag) {
+bool send_msg(int fd, const string& msg, const char* start_flag, const char* end_flag) {
     string send_msg = start_flag + msg + end_flag;
     ssize_t ret = send(fd, send_msg.c_str(), send_msg.size(), 0);
-    assert(ret == send_msg.size());
+    return ret == send_msg.size();
 }
 
-string recv_msg(int fd, const char* start_flag, const char* end_flag) {
+bool recv_msg(string &ret, int fd, const char* start_flag, const char* end_flag) {
     string msg;
     // 一直接收，直到接收到了 MSG FLAG
     while(msg.find(end_flag) == string::npos) {
@@ -84,7 +84,7 @@ string recv_msg(int fd, const char* start_flag, const char* end_flag) {
         if((ret = recv(fd, &ch, 1, MSG_DONTWAIT)) < 0)
         {
             if(errno != EINTR && errno != EAGAIN)
-                return string();
+                return false;
         }
         else if(ret == 1)
             msg += ch;
@@ -98,7 +98,8 @@ string recv_msg(int fd, const char* start_flag, const char* end_flag) {
     
     // 如果头部尾部的 FLAG 没有配对，则说明远程服务器中断了连接
     if(msg.substr(0, start_flag_len) != start_flag || msg.substr(msg.size() - end_flag_len) != end_flag)
-        return "";
+        return false;
     // 返回除去消息头的信息
-    return msg.substr(start_flag_len, msg.size() - end_flag_len - start_flag_len);
+    ret = msg.substr(start_flag_len, msg.size() - end_flag_len - start_flag_len);
+    return true;
 }

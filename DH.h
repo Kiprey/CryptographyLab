@@ -77,9 +77,9 @@ public:
     bool server_exchange_key();
     bool client_exchange_key();
     // 发送信息
-    void send(string msg);
+    bool send(const string& msg);
     // 接收信息
-    string recv(void);
+    bool recv(string& ret_msg);
 };
 
 #endif
