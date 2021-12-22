@@ -8,12 +8,13 @@ using namespace std;
 int g_p, g_q;
 unsigned int g_d, g_e, g_n; //公钥(g_e,g_n)，私钥(g_d,g_n) 规定模数不超过16位，即最多为5位十进制
 
-static bool JudgePrimeNum(unsigned int num);
-static unsigned int RandomlyGenerate(unsigned int a, unsigned int b);
-static unsigned int gcd(unsigned int big, unsigned int small);
-static bool RelativePrime(unsigned int big, unsigned int small);
-static int CalculateD(unsigned int e, unsigned int model);
+static bool JudgePrimeNum(unsigned int num);                          //判断num是否为素数
+static unsigned int RandomlyGenerate(unsigned int a, unsigned int b); //产生a到b-1的随机数
+static unsigned int gcd(unsigned int big, unsigned int small);        //求最大公因数
+static bool RelativePrime(unsigned int big, unsigned int small);      //判断最大公因数是否是1，是1的话两个数就互质
+static int CalculateD(unsigned int e, unsigned int model);            //求e*d = 1 mod (p-1)(q-1) 中的d
 static unsigned int PowerModule(int a, int b, int n);
+static void ProduceKey(); //产生密钥
 
 //判断num是否为素数
 bool JudgePrimeNum(unsigned int num)
@@ -115,6 +116,7 @@ unsigned int PowerModule(int a, int b, int n)
 //RSA加密,生成密文：5位一组的十进制数字
 string encrypt(string s)
 {
+    ProduceKey();
     string result = "";
     int len = s.length();
     for (int i = 0; i < len; i++)
@@ -131,8 +133,8 @@ string encrypt(string s)
     return result;
 }
 
-//RSA解密,生成明文：字符串
-string decrypt(string s)
+//RSA解密,需要输入私钥,生成明文：字符串
+string decrypt(string s, int d, int n)
 {
     string result = "";
     int len = s.length();
@@ -146,7 +148,7 @@ string decrypt(string s)
             c += factor * (single[j] - '0');
             factor /= 10;
         }
-        int temp = PowerModule(c, g_d, g_n);
+        int temp = PowerModule(c, d, n);
         result += (char)temp;
     }
     return result;
