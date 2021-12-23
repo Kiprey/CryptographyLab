@@ -5,6 +5,7 @@
 using namespace std;
 int main()
 {
+#if 0
 	string s = "Sun Ruijiang is a smart boy";
 	fstream file1;
 	key k;
@@ -23,5 +24,6 @@ int main()
 	file1.open("plain.txt", ios::out);
 	file1 << plainS;
 	file1.close();
+#endif
 	return 0;
 }
