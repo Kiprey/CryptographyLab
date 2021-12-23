@@ -1,10 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "RSA.cpp"
+#include "RSA.h"
 using namespace std;
 int main() 
 {
+#if 0
 	string s = "Sun Ruijiang is a smart boy";
     ProduceKey();
 	fstream file1;
@@ -20,5 +21,6 @@ int main()
 	file1.open("plain.txt",ios::out);
 	file1 << plainS;
 	file1.close();
+#endif
 	return 0;
 }

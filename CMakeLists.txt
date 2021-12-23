@@ -39,6 +39,22 @@ target_link_libraries(DH_test crypto ${CMAKE_DL_LIBS})
 add_executable(SSL_test network.cpp network.h SSL_test.cpp)
 target_link_libraries(SSL_test crypto ssl ${CMAKE_DL_LIBS})
 
+set(AFFINE_SRC Affine.cpp Affine.h)
+add_executable(Affine_test Affine_test.cpp ${AFFINE_SRC})
+target_link_libraries(Affine_test ${CMAKE_DL_LIBS})
+
+set(LFSR_SRC LFSR.cpp LFSR.h)
+add_executable(LFSR_test LFSR_test.cpp ${LFSR_SRC})
+target_link_libraries(LFSR_test ${CMAKE_DL_LIBS})
+
+set(RC4_SRC RC4.cpp RC4.h)
+add_executable(RC4_test RC4_test.cpp ${RC4_SRC})
+target_link_libraries(RC4_test ${CMAKE_DL_LIBS})
+
+set(RSA_SRC RSA.cpp RSA.h)
+add_executable(RSA_test RSA_test.cpp ${RSA_SRC})
+target_link_libraries(RSA_test ${CMAKE_DL_LIBS})
+
 add_library(cryptolab SHARED libso.cpp ${DES_SRC} ${DH_SRC})
 target_link_libraries(cryptolab crypto ssl)
 
