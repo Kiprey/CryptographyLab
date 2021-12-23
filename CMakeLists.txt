@@ -32,10 +32,15 @@ set(DES_SRC DES.cpp DES.h)
 add_executable(DES_test DES_test.cpp ${DES_SRC})
 target_link_libraries(DES_test ${CMAKE_DL_LIBS})
 
-add_executable(DH_test network.cpp network.h DH.cpp DH.h DH_test.cpp)
+set(DH_SRC network.cpp network.h DH.cpp DH.h)
+add_executable(DH_test DH_test.cpp ${DH_SRC})
 target_link_libraries(DH_test crypto ${CMAKE_DL_LIBS})
 
 add_executable(SSL_test network.cpp network.h SSL_test.cpp)
 target_link_libraries(SSL_test crypto ssl ${CMAKE_DL_LIBS})
 
-add_library(cryptolab SHARED libso.cpp ${DES_SRC} )
+add_library(cryptolab SHARED libso.cpp ${DES_SRC} ${DH_SRC})
+target_link_libraries(cryptolab crypto ssl)
+
+add_executable(libso_test libso_test.cpp)
+target_link_libraries(libso_test ${CMAKE_DL_LIBS})
