@@ -24,8 +24,7 @@ void handleSIGPIPE();
 /**
  * @brief 网络交互使用，会检测交互协议等等
  */
-
-void send_msg(int fd, string msg, const char* start_flag, const char* end_flag);
-string recv_msg(int fd, const char* start_flag, const char* end_flag);
+bool send_msg(int fd, const string& msg, const char* start_flag, const char* end_flag);
+bool recv_msg(string &ret, int fd, const char* start_flag, const char* end_flag);
 
 #endif

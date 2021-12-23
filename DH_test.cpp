@@ -34,11 +34,13 @@ int main(int argc, char *argv[])
 
         string str;
         while(true) {
-            str = dh_service.recv();
+            if(!dh_service.recv(str))
+                break;
             if(str == END_MSG)
                 break;
             cout << "[MSG from CLIENT] " << str << endl;
-            dh_service.send(str);
+            if(!dh_service.send(str))
+                break;
         }
         dh_service.send(END_MSG);
 
@@ -56,10 +58,14 @@ int main(int argc, char *argv[])
         dh_service.client_exchange_key();
 
         string str;
+        cout << "[Input from CLIENT] ";
         while(cin >> str) {
-            dh_service.send(str);
-            str = dh_service.recv();
+            if(!dh_service.send(str))
+                break;
+            if(!dh_service.recv(str))
+                break;
             cout << "[MSG from SERVER] " << str << endl;
+            cout << "[Input from CLIENT] ";
         }
         dh_service.send(END_MSG);
 
