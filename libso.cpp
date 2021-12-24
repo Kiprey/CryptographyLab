@@ -1,6 +1,7 @@
 #include "libso.h"
 #include <openssl/ssl.h>
 #include <openssl/err.h>
+#include <cstring>
 
 extern "C" {
     // DES 协议相关
@@ -144,5 +145,70 @@ extern "C" {
 
     int SSL_my_write(void* ssl, char*buf, int len) {
         return SSL_write((SSL*)ssl, (void*)buf, len);
+    }
+
+    bool Affine_encrypt(int key1, int key2, const char* plain, char* cipher) {
+        string ret;
+        bool ret_b = affineEncryption(key1, key2, plain, ret);
+        memcpy(cipher, ret.c_str(), ret.size());
+        return ret_b;
+    }
+
+    bool Affine_decrypt(int key1, int key2, const char* cipher, char* plain) {
+        string ret;
+        bool ret_b = affineDecryption(key1, key2, cipher, ret);
+        memcpy(plain, ret.c_str(), ret.size());
+        return ret_b;
+    }
+
+    void RC4_set_key(unsigned char* s, const char* key) {
+        rc4Init(s, key);
+    }
+
+    const char* RC4_enc_dec(unsigned char* s, const char* data) {
+        static string ret;
+        ret = rc4Crypt(s, data);
+        return ret.c_str();
+    }
+
+    void LFSR_set_key(unsigned char* c, const char* key) {
+        coefInit(c, key);
+    }
+
+    const char* LFSR_enc_dec(unsigned char* c, const char* data) {
+        static string ret;
+        ret = LFSR(data, c);
+        return ret.c_str();
+    }
+
+    void RSA_gen_key(int* e, int* d, int* n) {
+        key k = ProduceKey();
+        *e = k.e;
+        *d = k.d;
+        *n = k.n;
+    }
+
+    const char* RSA_pubkey_encrypt(const char* data, int e, int n) {
+        static string ret;
+        ret = publicEncrypt(data, {e, -1, n});
+        return ret.c_str();
+    }
+
+    const char* RSA_pubkey_decrypt(const char* data, int e, int n) {
+        static string ret;
+        ret = publicDecrypt(data, {e, -1, n});
+        return ret.c_str();
+    }
+
+    const char* RSA_privkey_encrypt(const char* data, int d, int n) {
+        static string ret;
+        ret = privateEncrypt(data, {-1, d, n});
+        return ret.c_str();
+    }
+
+    const char* RSA_privkey_decrypt(const char* data, int d, int n) {
+        static string ret;
+        ret = privateDecrypt(data, {-1, d, n});
+        return ret.c_str();
     }
 }

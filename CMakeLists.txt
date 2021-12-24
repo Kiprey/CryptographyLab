@@ -55,7 +55,7 @@ set(RSA_SRC RSA.cpp RSA.h)
 add_executable(RSA_test RSA_test.cpp ${RSA_SRC})
 target_link_libraries(RSA_test ${CMAKE_DL_LIBS})
 
-add_library(cryptolab SHARED libso.cpp ${DES_SRC} ${DH_SRC})
+add_library(cryptolab SHARED libso.cpp ${DES_SRC} ${DH_SRC} ${AFFINE_SRC} ${RC4_SRC} ${LFSR_SRC} ${RSA_SRC})
 target_link_libraries(cryptolab crypto ssl)
 
 add_executable(libso_test libso_test.cpp)
