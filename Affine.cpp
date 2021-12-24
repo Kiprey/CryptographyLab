@@ -41,32 +41,12 @@ static int calInverse(int a, int m)
     return ans;
 }
 
-void affineEncryption(string &ciphertext)
+bool affineEncryption(int key1, int key2,string plaintext,string &ciphertext)
 {
-    string plaintext; //明文
-    int key1, key2;   //密钥1，密钥2
-    while (1)
+    //判断连个密钥是否合法
+    if (gcd(26, key1) == 1 && key1 >= 0 && key2 >= 0 && key1 < 26 && key2 < 26)
     {
-        cout << " Please enter plaintext!" << endl;
-        char c = cin.get(); //读取多余的回车符
-        getline(cin, plaintext);
-        //保证输入不为空
-        if (plaintext == "")
-            cout << "The plaintext is empty! Please enter again. " << endl;
-        else
-            break;
-    }
-    while (1)
-    {
-        cout << " Please enter key1,key2!" << endl;
-        cin >> key1 >> key2;
-        //key1，key2可用
-        if (gcd(26, key1) == 1 && key1 >= 0 && key2 >= 0 && key1 < 26 && key2 < 26)
-            break;
-        else
-            cout << "Invalid input! Please enter again. " << endl;
-    }
-    ciphertext = ""; //清空密文
+        ciphertext = ""; //清空密文
     for (int i = 0; i < plaintext.length(); i++)
     {
         if (isalpha(plaintext[i]))//处理字母
@@ -79,40 +59,28 @@ void affineEncryption(string &ciphertext)
             ciphertext = ciphertext + temp;   //得到密文
         }
     }
+    return 1;//返回加密后的密文
+    }
+    else
+    return 0;
+    
 }
 
-void affineDecryption(string &clear_text)
+bool affineDecryption(int key1,int key2,string ciphertext,string &clear_text)
 {
-    string g_ciphertext; //密文
-    int key1, key2;      //密钥1，密钥2
-    while (1)
+    if (gcd(26, key1) == 1 && key1 >= 0 && key2 >= 0 && key1 < 26 && key2 < 26)
     {
-        cout << " Please enter ciphertext!" << endl;
-        char c = cin.get(); //读取多余的回车符
-        getline(cin, g_ciphertext);
-        //保证输入不为空
-        if (g_ciphertext == "")
-            cout << "The ciphertext is empty! Please enter again. " << endl;
-        else
-            break;
-    }
-    while (1)
+        clear_text = ""; //清空明文
+    for (int i = 0; i < ciphertext.length(); i++)
     {
-        cout << " Please enter key1,key2!" << endl;
-        cin >> key1 >> key2;
-        //key1，key2可用
-        if (gcd(26, key1) == 1 && key1 >= 0 && key2 >= 0 && key1 < 26 && key2 < 26)
-            break;
-        else
-            cout << "Invalid input! Please enter again. " << endl;
-    }
-    clear_text = ""; //清空明文
-    for (int i = 0; i < g_ciphertext.length(); i++)
-    {
-        int code = g_ciphertext[i] - 'a'; //字符变数字
+        int code = ciphertext[i] - 'a'; //字符变数字
         //解密 m=(c-b+n)*a^(-1) mod n
         code = ((code - key2 + 26) * calInverse(key1, 26)) % 26;
         char temp = code + 'a';         //数字变字符
         clear_text = clear_text + temp; //得到明文
     }
+    return 1;//返回解密的明文
+    }
+    else
+    return 0;
 }
