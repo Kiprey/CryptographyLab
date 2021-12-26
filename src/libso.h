@@ -15,6 +15,7 @@ extern "C" {
     /**
      * @brief 设置 DES 密钥
      * @param k 密钥字符串参数
+     * @note key 必须是纯数字
      */ 
     void DES_generateKeys(const char* k);
 
