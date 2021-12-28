@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
-    <height>720</height>
+    <width>1296</width>
+    <height>787</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -969,7 +969,42 @@ Button */
                    <string notr="true">background-image: url(:/icons/images/icons/cil-file.png);</string>
                   </property>
                   <property name="text">
-                   <string>流密码加密</string>
+                   <string>RC4加密</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_liu_2">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>45</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="layoutDirection">
+                   <enum>Qt::LeftToRight</enum>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-image: url(:/icons/images/icons/cil-file.png);</string>
+                  </property>
+                  <property name="text">
+                   <string>LFSR加密</string>
                   </property>
                  </widget>
                 </item>
@@ -1004,7 +1039,7 @@ Button */
                    <string notr="true">background-image: url(:/icons/images/icons/cil-file.png);</string>
                   </property>
                   <property name="text">
-                   <string>对称加密</string>
+                   <string>DES对称加密</string>
                   </property>
                  </widget>
                 </item>
@@ -1039,7 +1074,7 @@ Button */
                    <string notr="true">background-image: url(:/icons/images/icons/cil-file.png);</string>
                   </property>
                   <property name="text">
-                   <string>非对称加密</string>
+                   <string>RSA非对称加密</string>
                   </property>
                  </widget>
                 </item>
@@ -1075,6 +1110,41 @@ Button */
                   </property>
                   <property name="text">
                    <string>DH认证协议以及增强</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_SSL">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>45</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="layoutDirection">
+                   <enum>Qt::LeftToRight</enum>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-image: url(:/icons/images/icons/cil-file.png);</string>
+                  </property>
+                  <property name="text">
+                   <string>SSL演示</string>
                   </property>
                  </widget>
                 </item>
@@ -1987,11 +2057,11 @@ p, li { white-space: pre-wrap; }
                       <number>-4</number>
                      </property>
                      <property name="currentIndex">
-                      <number>3</number>
+                      <number>6</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
-                       <string notr="true">background-image: url(:/images/images/images/HNU_vertical.png);
+                       <string notr="true">background-image: url(:/images/images/images/PyDracula_vertical.png);
 background-position: center;
 background-repeat: no-repeat;</string>
                       </property>
@@ -2289,7 +2359,7 @@ background-repeat: no-repeat;</string>
                                 <rect>
                                  <x>0</x>
                                  <y>0</y>
-                                 <width>218</width>
+                                 <width>353</width>
                                  <height>218</height>
                                 </rect>
                                </property>
@@ -2905,7 +2975,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                                    <string notr="true">background-color: rgb(33, 37, 43);</string>
                                   </property>
                                   <property name="placeholderText">
-                                   <string>a,必须是（1,3,5,7,9,11,15,17,19,21,23,25）中的一个</string>
+                                   <string>密钥1, 必须与26互素</string>
                                   </property>
                                  </widget>
                                 </item>
@@ -2914,13 +2984,28 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                                   <property name="styleSheet">
                                    <string notr="true">background-color: rgb(33, 37, 43);</string>
                                   </property>
+                                  <property name="text">
+                                   <string/>
+                                  </property>
                                   <property name="placeholderText">
-                                   <string>b,0~25</string>
+                                   <string>密钥2, 范围必须位于 [0, 26)</string>
                                   </property>
                                  </widget>
                                 </item>
-                                <item>
+                                <item alignment="Qt::AlignHCenter">
                                  <widget class="QPushButton" name="pushButton_8">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>200</width>
+                                    <height>0</height>
+                                   </size>
+                                  </property>
+                                  <property name="maximumSize">
+                                   <size>
+                                    <width>201</width>
+                                    <height>16777215</height>
+                                   </size>
+                                  </property>
                                   <property name="styleSheet">
                                    <string notr="true">background-color: rgb(52, 59, 72);</string>
                                   </property>
@@ -2929,8 +3014,14 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                                   </property>
                                  </widget>
                                 </item>
-                                <item>
+                                <item alignment="Qt::AlignHCenter">
                                  <widget class="QPushButton" name="pushButton_9">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>200</width>
+                                    <height>0</height>
+                                   </size>
+                                  </property>
                                   <property name="styleSheet">
                                    <string notr="true">background-color: rgb(52, 59, 72);</string>
                                   </property>
@@ -2999,8 +3090,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                              <string notr="true">background-color: rgb(33, 37, 43);</string>
                             </property>
                             <property name="plainText">
-                             <string>  序列密码也称为流密码（Stream Cipher），它是对称密码算法的一种。序列密码具有实现简单、便于硬件实施、加解密处理速度快、没有或只有有限的错误传播等特点，因此在实际应用中，特别是专用或机密机构中保持着优势，典型的应用领域包括无线通信、外交通信。 1949年Shannon证明了只有一次一密的密码体制是绝对安全的，这给序列密码技术的研究以强大的支持，序列密码方案的发展是模仿一次一密系统的尝试，或者说“一次一密”的密码方案是序列密码的雏形。如果序列密码所使用的是真正随机方式的、与消息流长度相同的密钥流，则此时的序列密码就是一次一密的密码体制。若能以一种方式产生一随机序列（密钥流），这一序列由密钥所确定，则利用这样的序列就可以进行加密，即将密钥、明文表示成连续的符号或二进制，对应地进行加密,加解密时一次处理明文中的一个或几个比特。
-  在序列密码中，密钥流由密钥流发生器f产生：zi=f(k,si)，这里的si是加密器中存储器（记忆元件）在i时刻的状态。根据加密器中的记忆元件si的存贮状态是否依赖于明文字符，序列密码可进一步分成同步和自同步两种。如果si独立于明文字符则称为同步流密码，否则称为自同步流密码。</string>
+                             <string>RC4</string>
                             </property>
                            </widget>
                           </item>
@@ -3045,7 +3135,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                             </property>
                             <layout class="QVBoxLayout" name="verticalLayout_30">
                              <item>
-                              <widget class="QLineEdit" name="lineEdit_3">
+                              <widget class="QPlainTextEdit" name="plainTextEdit_18">
                                <property name="minimumSize">
                                 <size>
                                  <width>0</width>
@@ -3055,30 +3145,17 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                                <property name="maximumSize">
                                 <size>
                                  <width>16777215</width>
-                                 <height>16777215</height>
+                                 <height>200</height>
                                 </size>
+                               </property>
+                               <property name="layoutDirection">
+                                <enum>Qt::LeftToRight</enum>
                                </property>
                                <property name="styleSheet">
                                 <string notr="true">background-color: rgb(33, 37, 43);</string>
                                </property>
                                <property name="placeholderText">
-                                <string>a,必须是（1,3,5,7,9,11,15,17,19,21,23,25）中的一个</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLineEdit" name="lineEdit_4">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>16777215</width>
-                                 <height>16777215</height>
-                                </size>
-                               </property>
-                               <property name="styleSheet">
-                                <string notr="true">background-color: rgb(33, 37, 43);</string>
-                               </property>
-                               <property name="placeholderText">
-                                <string>b,0~25</string>
+                                <string>key</string>
                                </property>
                               </widget>
                              </item>
@@ -3086,7 +3163,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                               <widget class="QPushButton" name="pushButton_7">
                                <property name="minimumSize">
                                 <size>
-                                 <width>100</width>
+                                 <width>200</width>
                                  <height>0</height>
                                 </size>
                                </property>
@@ -3100,7 +3177,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                                 <string notr="true">background-color: rgb(52, 59, 72);</string>
                                </property>
                                <property name="text">
-                                <string>加  密</string>
+                                <string>RC4 加  密</string>
                                </property>
                               </widget>
                              </item>
@@ -3108,7 +3185,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                               <widget class="QPushButton" name="pushButton_6">
                                <property name="minimumSize">
                                 <size>
-                                 <width>100</width>
+                                 <width>200</width>
                                  <height>0</height>
                                 </size>
                                </property>
@@ -3125,7 +3202,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                                 <string notr="true">background-color: rgb(52, 59, 72);</string>
                                </property>
                                <property name="text">
-                                <string>解  密</string>
+                                <string>RC4 解  密</string>
                                </property>
                               </widget>
                              </item>
@@ -3153,7 +3230,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                              <string notr="true">background-color: rgb(33, 37, 43);</string>
                             </property>
                             <property name="placeholderText">
-                             <string>result</string>
+                             <string>加密或者解密的结果</string>
                             </property>
                            </widget>
                           </item>
@@ -3163,7 +3240,147 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                        <item>
                         <widget class="QLabel" name="label">
                          <property name="text">
-                          <string>liu</string>
+                          <string>RC4</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="liu_2_page">
+                      <layout class="QVBoxLayout" name="verticalLayout_34">
+                       <item>
+                        <widget class="QWidget" name="verticalWidget" native="true">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777213</width>
+                           <height>250</height>
+                          </size>
+                         </property>
+                         <layout class="QVBoxLayout" name="verticalLayout_36">
+                          <item>
+                           <widget class="QPlainTextEdit" name="plainTextEdit_17">
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>200</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(33, 37, 43);</string>
+                            </property>
+                            <property name="placeholderText">
+                             <string>LSFR encryption</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QWidget" name="horizontalWidget_2" native="true">
+                         <layout class="QHBoxLayout" name="horizontalLayout_15">
+                          <item>
+                           <widget class="QPlainTextEdit" name="plainTextEdit_22">
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(33, 37, 43);</string>
+                            </property>
+                            <property name="placeholderText">
+                             <string>输入待加解密内容</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QWidget" name="verticalWidget" native="true">
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <layout class="QVBoxLayout" name="verticalLayout_38">
+                             <item>
+                              <widget class="QPlainTextEdit" name="plainTextEdit_23">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>200</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="placeholderText">
+                                <string>key</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item alignment="Qt::AlignHCenter">
+                              <widget class="QPushButton" name="pushButton_10">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>200</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(52, 59, 72);</string>
+                               </property>
+                               <property name="text">
+                                <string>LSFR 加  密</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item alignment="Qt::AlignHCenter">
+                              <widget class="QPushButton" name="pushButton_11">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>200</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(52, 59, 72);</string>
+                               </property>
+                               <property name="text">
+                                <string>LSFR 解  密</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPlainTextEdit" name="plainTextEdit_21">
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(33, 37, 43);</string>
+                            </property>
+                            <property name="placeholderText">
+                             <string>加密或者解密的结果</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_6">
+                         <property name="text">
+                          <string>LSFR</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
@@ -3266,7 +3483,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                                 <string notr="true">background-color: rgb(52, 59, 72);</string>
                                </property>
                                <property name="text">
-                                <string>jiami</string>
+                                <string>加密</string>
                                </property>
                               </widget>
                              </item>
@@ -3282,7 +3499,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                                 <string notr="true">background-color: rgb(52, 59, 72);</string>
                                </property>
                                <property name="text">
-                                <string>jiemi</string>
+                                <string>解密</string>
                                </property>
                               </widget>
                              </item>
@@ -3311,7 +3528,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                        <item>
                         <widget class="QLabel" name="label_2">
                          <property name="text">
-                          <string>duichen</string>
+                          <string>DES</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
@@ -3361,6 +3578,106 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                        <item>
                         <widget class="QWidget" name="horizontalWidget" native="true">
                          <layout class="QGridLayout" name="gridLayout_3">
+                          <item row="1" column="2">
+                           <widget class="QWidget" name="horizontalWidget_3" native="true">
+                            <layout class="QHBoxLayout" name="horizontalLayout_19">
+                             <item>
+                              <widget class="QPlainTextEdit" name="plainTextEdit_26">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>100</height>
+                                </size>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="placeholderText">
+                                <string>d 私钥之一</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPlainTextEdit" name="plainTextEdit_27">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>100</height>
+                                </size>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="placeholderText">
+                                <string>n 私钥之一</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                          <item row="1" column="0">
+                           <widget class="QWidget" name="horizontalWidget" native="true">
+                            <layout class="QHBoxLayout" name="horizontalLayout_17">
+                             <item>
+                              <widget class="QPlainTextEdit" name="plainTextEdit_25">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>100</height>
+                                </size>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="placeholderText">
+                                <string>e 公钥之一</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPlainTextEdit" name="plainTextEdit_24">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>100</height>
+                                </size>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="placeholderText">
+                                <string>n 公钥之一</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
                           <item row="0" column="0">
                            <widget class="QPlainTextEdit" name="plainTextEdit_6">
                             <property name="minimumSize">
@@ -3381,6 +3698,74 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                             <property name="placeholderText">
                              <string>明文</string>
                             </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="1" rowspan="2">
+                           <widget class="QWidget" name="verticalWidget" native="true">
+                            <property name="minimumSize">
+                             <size>
+                              <width>200</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>300</height>
+                             </size>
+                            </property>
+                            <layout class="QVBoxLayout" name="verticalLayout_28">
+                             <item>
+                              <widget class="QPushButton" name="pushButton_25">
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(52, 59, 72);</string>
+                               </property>
+                               <property name="text">
+                                <string>RSA 密钥生成</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="pushButton_5">
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(52, 59, 72);</string>
+                               </property>
+                               <property name="text">
+                                <string>RSA 公钥加密</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="pushButton_15">
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(52, 59, 72);</string>
+                               </property>
+                               <property name="text">
+                                <string>RSA 公钥解密</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="pushButton_16">
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(52, 59, 72);</string>
+                               </property>
+                               <property name="text">
+                                <string>RSA 私钥加密</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="pushButton_4">
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(52, 59, 72);</string>
+                               </property>
+                               <property name="text">
+                                <string>RSA 私钥解密</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
                            </widget>
                           </item>
                           <item row="0" column="2">
@@ -3405,89 +3790,13 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                             </property>
                            </widget>
                           </item>
-                          <item row="1" column="0">
-                           <widget class="QPlainTextEdit" name="plainTextEdit_8">
-                            <property name="minimumSize">
-                             <size>
-                              <width>0</width>
-                              <height>100</height>
-                             </size>
-                            </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>16777215</width>
-                              <height>16777215</height>
-                             </size>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(33, 37, 43);</string>
-                            </property>
-                            <property name="placeholderText">
-                             <string>公钥</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="1" column="2">
-                           <widget class="QPlainTextEdit" name="plainTextEdit_9">
-                            <property name="minimumSize">
-                             <size>
-                              <width>0</width>
-                              <height>100</height>
-                             </size>
-                            </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>16777215</width>
-                              <height>16777215</height>
-                             </size>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(33, 37, 43);</string>
-                            </property>
-                            <property name="placeholderText">
-                             <string>私钥</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="0" column="1" rowspan="2">
-                           <widget class="QWidget" name="verticalWidget" native="true">
-                            <property name="minimumSize">
-                             <size>
-                              <width>100</width>
-                              <height>0</height>
-                             </size>
-                            </property>
-                            <layout class="QVBoxLayout" name="verticalLayout_28">
-                             <item>
-                              <widget class="QPushButton" name="pushButton_5">
-                               <property name="styleSheet">
-                                <string notr="true">background-color: rgb(52, 59, 72);</string>
-                               </property>
-                               <property name="text">
-                                <string>RSA加密</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="pushButton_4">
-                               <property name="styleSheet">
-                                <string notr="true">background-color: rgb(52, 59, 72);</string>
-                               </property>
-                               <property name="text">
-                                <string>RSA解密</string>
-                               </property>
-                              </widget>
-                             </item>
-                            </layout>
-                           </widget>
-                          </item>
                          </layout>
                         </widget>
                        </item>
                        <item>
                         <widget class="QLabel" name="label_4">
                          <property name="text">
-                          <string>feiduichen</string>
+                          <string>RSA</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
@@ -3693,6 +4002,20 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                         <widget class="QLabel" name="label_5">
                          <property name="text">
                           <string>DH</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="SSL_page">
+                      <layout class="QVBoxLayout" name="verticalLayout_37">
+                       <item>
+                        <widget class="QLabel" name="label_7">
+                         <property name="text">
+                          <string>SSL</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
@@ -4040,12 +4363,12 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>DES_decrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>721</x>
-     <y>551</y>
+     <x>744</x>
+     <y>614</y>
     </hint>
     <hint type="destinationlabel">
      <x>747</x>
-     <y>-4</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -4056,12 +4379,188 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>DES_encrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>678</x>
-     <y>463</y>
+     <x>744</x>
+     <y>512</y>
     </hint>
     <hint type="destinationlabel">
      <x>644</x>
-     <y>-2</y>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_8</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Affine_encrypt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>777</x>
+     <y>593</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>501</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_9</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Affine_decrypt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>777</x>
+     <y>651</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>599</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_7</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RC4_encrypt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>672</x>
+     <y>604</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>568</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RC4_decrypt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>696</x>
+     <y>653</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>718</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_10</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RC4_encrypt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>663</x>
+     <y>615</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>509</x>
+     <y>-12</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_11</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RC4_decrypt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>716</x>
+     <y>664</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>713</x>
+     <y>-14</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_25</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RSA_gen_key()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>654</x>
+     <y>396</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>596</x>
+     <y>-21</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RSA_pubkey_encrypt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>709</x>
+     <y>448</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>696</x>
+     <y>-4</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_15</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RSA_pubkey_decrypt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>652</x>
+     <y>493</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>385</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_16</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RSA_privkey_encrypt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>709</x>
+     <y>543</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>817</x>
+     <y>-12</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>RSA_pubkey_decrypt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>643</x>
+     <y>591</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>212</x>
+     <y>4</y>
     </hint>
    </hints>
   </connection>
@@ -4069,5 +4568,16 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
  <slots>
   <slot>DES_encrypt()</slot>
   <slot>DES_decrypt()</slot>
+  <slot>Affine_encrypt()</slot>
+  <slot>Affine_decrypt()</slot>
+  <slot>RC4_encrypt()</slot>
+  <slot>RC4_decrypt()</slot>
+  <slot>LSFR_encrypt()</slot>
+  <slot>LSFR_decrypt()</slot>
+  <slot>RSA_gen_key()</slot>
+  <slot>RSA_pubkey_encrypt()</slot>
+  <slot>RSA_pubkey_decrypt()</slot>
+  <slot>RSA_privkey_encrypt()</slot>
+  <slot>RSA_privkey_decrypt()</slot>
  </slots>
 </ui>
