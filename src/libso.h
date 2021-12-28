@@ -4,13 +4,18 @@
 #include "DES.h"
 #include "DH.h"
 #include "network.h"
+#include "Affine.h"
+#include "RC4.h"
+#include "LFSR.h"
+#include "RSA.h"
 
 extern "C" {
-    // DES 协议相关
+    // DES 协议相关 ------------------
     
     /**
      * @brief 设置 DES 密钥
      * @param k 密钥字符串参数
+     * @note key 必须是纯数字
      */ 
     void DES_generateKeys(const char* k);
 
@@ -28,7 +33,7 @@ extern "C" {
      */ 
     const char* DES_decrypt(const char *s);
 
-    // DH 协议相关
+    // DH 协议相关 ------------------
 
     /**
      * @brief 创建 DH 协议对象
@@ -72,7 +77,7 @@ extern "C" {
      */ 
     const char* Auth_DH_recv(void* ptr);
 
-    // SSL 相关
+    // SSL 相关 ------------------
 
     /**
      * @brief 输出证书信息
@@ -135,6 +140,106 @@ extern "C" {
      * @return 发送成功的字节长度
      */ 
     int SSL_my_write(void* ssl, char*buf, int len);
+
+    // 仿射加密相关 ------------------
+
+    /**
+     * @brief 仿射加密
+     * @param key1 密钥1, 必须与26互素
+     * @param key2 密钥2, 范围必须位于 [0, 26)
+     * @param plain 待加密的明文
+     * @param cipher 加密结果将输出至该指针所指向的内存空间
+     */ 
+    bool Affine_encrypt(int key1, int key2, const char* plain, char* cipher);
+
+    /**
+     * @brief 仿射解密
+     * @param key1 密钥1, 必须与26互素
+     * @param key2 密钥2, 范围必须位于 [0, 26)
+     * @param cipher 待解密的密文
+     * @param plain 解密结果将输出至该指针所指向的内存空间
+     */ 
+    bool Affine_decrypt(int key1, int key2, const char* cipher, char* plain);
+
+    // RC4相关 ------------------
+
+    /**
+     * @brief RC4 密钥设置
+     * @param s 一个指向存放S盒的内存指针，其所指向的空间至少为 256 字节
+     * @param key 待设置的密钥
+     */ 
+    void RC4_set_key(unsigned char* s, const char* key);
+
+    /**
+     * @brief RC4 加密解密函数。加密与解密都使用同一个函数
+     * @param s 一个指向存放S盒的内存指针，其所指向的空间至少为 256 字节
+     * @param data 待加密/解密的数据
+     * @return 解密/加密后的数据。该指针无需用户释放
+     */ 
+    const char* RC4_enc_dec(unsigned char* s, const char* data);
+
+    // LFSR 相关 ------------------
+
+    /**
+     * @brief LFSR 密钥设置
+     * @param c 一个指向存放四个线性反馈寄存器的内存指针，其所指向的空间至少为 4 字节
+     * @param key 待设置的密钥
+     */ 
+    void LFSR_set_key(unsigned char* c, const char* key);
+
+    /**
+     * @brief LFSR 加密解密函数。加密与解密都使用同一个函数
+     * @param c 一个指向存放四个线性反馈寄存器的内存指针，其所指向的空间至少为 4 字节
+     * @param data 待加密/解密的数据
+     * @return 解密/加密后的数据。该指针无需用户释放
+     */ 
+    const char* LFSR_enc_dec(unsigned char* c, const char* data);
+
+    // RSA 相关 ------------------
+
+    /**
+     * @brief RSA 密钥生成
+     * @param e 指向存放 e 的整形指针
+     * @param d 指向存放 d 的整形指针
+     * @param n 指向存放 n 的整形指针
+     */ 
+    void RSA_gen_key(int* e, int* d, int* n);
+
+    /**
+     * @brief RSA 公钥加密
+     * @param data 明文
+     * @param e 公钥之一
+     * @param n 公钥之一
+     * @return 加密后的结果
+     */ 
+    const char* RSA_pubkey_encrypt(const char* data, int e, int n);
+    
+    /**
+     * @brief RSA 公钥解密
+     * @param data 密文
+     * @param e 公钥之一
+     * @param n 公钥之一
+     * @return 解密后的结果
+     */
+    const char* RSA_pubkey_decrypt(const char* data, int e, int n);
+
+    /**
+     * @brief RSA 私钥加密
+     * @param data 明文
+     * @param d 私钥之一
+     * @param n 私钥之一
+     * @return 加密后的结果
+     */
+    const char* RSA_privkey_encrypt(const char* data, int d, int n);
+
+    /**
+     * @brief RSA 私钥解密
+     * @param data 密文
+     * @param d 私钥之一
+     * @param n 私钥之一
+     * @return 解密后的结果
+     */
+    const char* RSA_privkey_decrypt(const char* data, int d, int n);
 }
 
 #endif

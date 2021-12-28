@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainvdbrNz.ui'
+## Form generated from reading UI file 'maineHCSDD.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1280, 720)
+        MainWindow.resize(1296, 795)
         MainWindow.setMinimumSize(QSize(940, 560))
         self.styleSheet = QWidget(MainWindow)
         self.styleSheet.setObjectName(u"styleSheet")
@@ -706,6 +706,18 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.btn_liu)
 
+        self.btn_liu_2 = QPushButton(self.topMenu)
+        self.btn_liu_2.setObjectName(u"btn_liu_2")
+        sizePolicy.setHeightForWidth(self.btn_liu_2.sizePolicy().hasHeightForWidth())
+        self.btn_liu_2.setSizePolicy(sizePolicy)
+        self.btn_liu_2.setMinimumSize(QSize(0, 45))
+        self.btn_liu_2.setFont(font)
+        self.btn_liu_2.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_liu_2.setLayoutDirection(Qt.LeftToRight)
+        self.btn_liu_2.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-file.png);")
+
+        self.verticalLayout_8.addWidget(self.btn_liu_2)
+
         self.btn_duichen = QPushButton(self.topMenu)
         self.btn_duichen.setObjectName(u"btn_duichen")
         sizePolicy.setHeightForWidth(self.btn_duichen.sizePolicy().hasHeightForWidth())
@@ -741,6 +753,18 @@ class Ui_MainWindow(object):
         self.btn_DH.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-file.png);")
 
         self.verticalLayout_8.addWidget(self.btn_DH)
+
+        self.btn_SSL = QPushButton(self.topMenu)
+        self.btn_SSL.setObjectName(u"btn_SSL")
+        sizePolicy.setHeightForWidth(self.btn_SSL.sizePolicy().hasHeightForWidth())
+        self.btn_SSL.setSizePolicy(sizePolicy)
+        self.btn_SSL.setMinimumSize(QSize(0, 45))
+        self.btn_SSL.setFont(font)
+        self.btn_SSL.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_SSL.setLayoutDirection(Qt.LeftToRight)
+        self.btn_SSL.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-file.png);")
+
+        self.verticalLayout_8.addWidget(self.btn_SSL)
 
         self.btn_save = QPushButton(self.topMenu)
         self.btn_save.setObjectName(u"btn_save")
@@ -1087,7 +1111,7 @@ class Ui_MainWindow(object):
         self.stackedWidget.setMidLineWidth(-4)
         self.home = QWidget()
         self.home.setObjectName(u"home")
-        self.home.setStyleSheet(u"background-image: url(:/images/images/images/HNU_vertical.png);\n"
+        self.home.setStyleSheet(u"background-image: url(:/images/images/images/PyDracula_vertical.png);\n"
 "background-position: center;\n"
 "background-repeat: no-repeat;")
         self.stackedWidget.addWidget(self.home)
@@ -1232,7 +1256,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 218, 218))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 353, 218))
         self.scrollAreaWidgetContents.setStyleSheet(u" QScrollBar:vertical {\n"
 "	border: none;\n"
 "    background: rgb(52, 59, 72);\n"
@@ -1485,15 +1509,18 @@ class Ui_MainWindow(object):
 
         self.pushButton_8 = QPushButton(self.verticalWidget2)
         self.pushButton_8.setObjectName(u"pushButton_8")
+        self.pushButton_8.setMinimumSize(QSize(200, 0))
+        self.pushButton_8.setMaximumSize(QSize(201, 16777215))
         self.pushButton_8.setStyleSheet(u"background-color: rgb(52, 59, 72);")
 
-        self.verticalLayout_32.addWidget(self.pushButton_8)
+        self.verticalLayout_32.addWidget(self.pushButton_8, 0, Qt.AlignHCenter)
 
         self.pushButton_9 = QPushButton(self.verticalWidget2)
         self.pushButton_9.setObjectName(u"pushButton_9")
+        self.pushButton_9.setMinimumSize(QSize(200, 0))
         self.pushButton_9.setStyleSheet(u"background-color: rgb(52, 59, 72);")
 
-        self.verticalLayout_32.addWidget(self.pushButton_9)
+        self.verticalLayout_32.addWidget(self.pushButton_9, 0, Qt.AlignHCenter)
 
 
         self.horizontalLayout_6.addWidget(self.verticalWidget2)
@@ -1555,24 +1582,18 @@ class Ui_MainWindow(object):
         self.verticalWidget4.setLayoutDirection(Qt.LeftToRight)
         self.verticalLayout_30 = QVBoxLayout(self.verticalWidget4)
         self.verticalLayout_30.setObjectName(u"verticalLayout_30")
-        self.lineEdit_3 = QLineEdit(self.verticalWidget4)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
-        self.lineEdit_3.setMinimumSize(QSize(0, 0))
-        self.lineEdit_3.setMaximumSize(QSize(16777215, 16777215))
-        self.lineEdit_3.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+        self.plainTextEdit_18 = QPlainTextEdit(self.verticalWidget4)
+        self.plainTextEdit_18.setObjectName(u"plainTextEdit_18")
+        self.plainTextEdit_18.setMinimumSize(QSize(0, 0))
+        self.plainTextEdit_18.setMaximumSize(QSize(16777215, 200))
+        self.plainTextEdit_18.setLayoutDirection(Qt.LeftToRight)
+        self.plainTextEdit_18.setStyleSheet(u"background-color: rgb(33, 37, 43);")
 
-        self.verticalLayout_30.addWidget(self.lineEdit_3)
-
-        self.lineEdit_4 = QLineEdit(self.verticalWidget4)
-        self.lineEdit_4.setObjectName(u"lineEdit_4")
-        self.lineEdit_4.setMaximumSize(QSize(16777215, 16777215))
-        self.lineEdit_4.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-
-        self.verticalLayout_30.addWidget(self.lineEdit_4)
+        self.verticalLayout_30.addWidget(self.plainTextEdit_18)
 
         self.pushButton_7 = QPushButton(self.verticalWidget4)
         self.pushButton_7.setObjectName(u"pushButton_7")
-        self.pushButton_7.setMinimumSize(QSize(100, 0))
+        self.pushButton_7.setMinimumSize(QSize(200, 0))
         self.pushButton_7.setMaximumSize(QSize(200, 16777215))
         self.pushButton_7.setStyleSheet(u"background-color: rgb(52, 59, 72);")
 
@@ -1580,7 +1601,7 @@ class Ui_MainWindow(object):
 
         self.pushButton_6 = QPushButton(self.verticalWidget4)
         self.pushButton_6.setObjectName(u"pushButton_6")
-        self.pushButton_6.setMinimumSize(QSize(100, 0))
+        self.pushButton_6.setMinimumSize(QSize(200, 0))
         self.pushButton_6.setMaximumSize(QSize(200, 16777215))
         self.pushButton_6.setLayoutDirection(Qt.LeftToRight)
         self.pushButton_6.setStyleSheet(u"background-color: rgb(52, 59, 72);")
@@ -1609,17 +1630,93 @@ class Ui_MainWindow(object):
         self.verticalLayout_21.addWidget(self.label)
 
         self.stackedWidget.addWidget(self.liu_page)
+        self.liu_2_page = QWidget()
+        self.liu_2_page.setObjectName(u"liu_2_page")
+        self.verticalLayout_34 = QVBoxLayout(self.liu_2_page)
+        self.verticalLayout_34.setObjectName(u"verticalLayout_34")
+        self.verticalWidget5 = QWidget(self.liu_2_page)
+        self.verticalWidget5.setObjectName(u"verticalWidget5")
+        self.verticalWidget5.setMaximumSize(QSize(16777213, 250))
+        self.verticalLayout_36 = QVBoxLayout(self.verticalWidget5)
+        self.verticalLayout_36.setObjectName(u"verticalLayout_36")
+        self.plainTextEdit_17 = QPlainTextEdit(self.verticalWidget5)
+        self.plainTextEdit_17.setObjectName(u"plainTextEdit_17")
+        self.plainTextEdit_17.setMaximumSize(QSize(16777215, 200))
+        self.plainTextEdit_17.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.verticalLayout_36.addWidget(self.plainTextEdit_17)
+
+
+        self.verticalLayout_34.addWidget(self.verticalWidget5)
+
+        self.horizontalWidget_2 = QWidget(self.liu_2_page)
+        self.horizontalWidget_2.setObjectName(u"horizontalWidget_2")
+        self.horizontalLayout_15 = QHBoxLayout(self.horizontalWidget_2)
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.plainTextEdit_22 = QPlainTextEdit(self.horizontalWidget_2)
+        self.plainTextEdit_22.setObjectName(u"plainTextEdit_22")
+        self.plainTextEdit_22.setMaximumSize(QSize(16777215, 16777215))
+        self.plainTextEdit_22.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.horizontalLayout_15.addWidget(self.plainTextEdit_22)
+
+        self.verticalWidget6 = QWidget(self.horizontalWidget_2)
+        self.verticalWidget6.setObjectName(u"verticalWidget6")
+        self.verticalWidget6.setMinimumSize(QSize(0, 0))
+        self.verticalLayout_38 = QVBoxLayout(self.verticalWidget6)
+        self.verticalLayout_38.setObjectName(u"verticalLayout_38")
+        self.plainTextEdit_23 = QPlainTextEdit(self.verticalWidget6)
+        self.plainTextEdit_23.setObjectName(u"plainTextEdit_23")
+        self.plainTextEdit_23.setMaximumSize(QSize(16777215, 200))
+        self.plainTextEdit_23.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.verticalLayout_38.addWidget(self.plainTextEdit_23)
+
+        self.pushButton_10 = QPushButton(self.verticalWidget6)
+        self.pushButton_10.setObjectName(u"pushButton_10")
+        self.pushButton_10.setMinimumSize(QSize(200, 0))
+        self.pushButton_10.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+
+        self.verticalLayout_38.addWidget(self.pushButton_10, 0, Qt.AlignHCenter)
+
+        self.pushButton_11 = QPushButton(self.verticalWidget6)
+        self.pushButton_11.setObjectName(u"pushButton_11")
+        self.pushButton_11.setMinimumSize(QSize(200, 0))
+        self.pushButton_11.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+
+        self.verticalLayout_38.addWidget(self.pushButton_11, 0, Qt.AlignHCenter)
+
+
+        self.horizontalLayout_15.addWidget(self.verticalWidget6)
+
+        self.plainTextEdit_21 = QPlainTextEdit(self.horizontalWidget_2)
+        self.plainTextEdit_21.setObjectName(u"plainTextEdit_21")
+        self.plainTextEdit_21.setMaximumSize(QSize(16777215, 16777215))
+        self.plainTextEdit_21.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.horizontalLayout_15.addWidget(self.plainTextEdit_21)
+
+
+        self.verticalLayout_34.addWidget(self.horizontalWidget_2)
+
+        self.label_6 = QLabel(self.liu_2_page)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_34.addWidget(self.label_6)
+
+        self.stackedWidget.addWidget(self.liu_2_page)
         self.duichen_page = QWidget()
         self.duichen_page.setObjectName(u"duichen_page")
         self.duichen_page.setMinimumSize(QSize(0, 150))
         self.verticalLayout_22 = QVBoxLayout(self.duichen_page)
         self.verticalLayout_22.setObjectName(u"verticalLayout_22")
-        self.verticalWidget5 = QWidget(self.duichen_page)
-        self.verticalWidget5.setObjectName(u"verticalWidget5")
-        self.verticalWidget5.setMaximumSize(QSize(16777215, 200))
-        self.verticalLayout_26 = QVBoxLayout(self.verticalWidget5)
+        self.verticalWidget7 = QWidget(self.duichen_page)
+        self.verticalWidget7.setObjectName(u"verticalWidget7")
+        self.verticalWidget7.setMaximumSize(QSize(16777215, 200))
+        self.verticalLayout_26 = QVBoxLayout(self.verticalWidget7)
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
-        self.plainTextEdit_2 = QPlainTextEdit(self.verticalWidget5)
+        self.plainTextEdit_2 = QPlainTextEdit(self.verticalWidget7)
         self.plainTextEdit_2.setObjectName(u"plainTextEdit_2")
         self.plainTextEdit_2.setMinimumSize(QSize(0, 100))
         self.plainTextEdit_2.setStyleSheet(u"background-color: rgb(33, 37, 43);")
@@ -1627,7 +1724,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_26.addWidget(self.plainTextEdit_2)
 
 
-        self.verticalLayout_22.addWidget(self.verticalWidget5)
+        self.verticalLayout_22.addWidget(self.verticalWidget7)
 
         self.horizontalWidget2 = QWidget(self.duichen_page)
         self.horizontalWidget2.setObjectName(u"horizontalWidget2")
@@ -1641,25 +1738,25 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_7.addWidget(self.plainTextEdit_4)
 
-        self.verticalWidget6 = QWidget(self.horizontalWidget2)
-        self.verticalWidget6.setObjectName(u"verticalWidget6")
-        self.verticalWidget6.setMaximumSize(QSize(200, 500))
-        self.verticalLayout_27 = QVBoxLayout(self.verticalWidget6)
+        self.verticalWidget8 = QWidget(self.horizontalWidget2)
+        self.verticalWidget8.setObjectName(u"verticalWidget8")
+        self.verticalWidget8.setMaximumSize(QSize(200, 500))
+        self.verticalLayout_27 = QVBoxLayout(self.verticalWidget8)
         self.verticalLayout_27.setObjectName(u"verticalLayout_27")
-        self.lineEdit_2 = QLineEdit(self.verticalWidget6)
+        self.lineEdit_2 = QLineEdit(self.verticalWidget8)
         self.lineEdit_2.setObjectName(u"lineEdit_2")
         self.lineEdit_2.setMinimumSize(QSize(0, 30))
         self.lineEdit_2.setStyleSheet(u"background-color: rgb(33, 37, 43);")
 
         self.verticalLayout_27.addWidget(self.lineEdit_2)
 
-        self.pushButton_3 = QPushButton(self.verticalWidget6)
+        self.pushButton_3 = QPushButton(self.verticalWidget8)
         self.pushButton_3.setObjectName(u"pushButton_3")
         self.pushButton_3.setStyleSheet(u"background-color: rgb(52, 59, 72);")
 
         self.verticalLayout_27.addWidget(self.pushButton_3)
 
-        self.pushButton_2 = QPushButton(self.verticalWidget6)
+        self.pushButton_2 = QPushButton(self.verticalWidget8)
         self.pushButton_2.setObjectName(u"pushButton_2")
         self.pushButton_2.setMinimumSize(QSize(100, 0))
         self.pushButton_2.setStyleSheet(u"background-color: rgb(52, 59, 72);")
@@ -1667,7 +1764,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_27.addWidget(self.pushButton_2)
 
 
-        self.horizontalLayout_7.addWidget(self.verticalWidget6)
+        self.horizontalLayout_7.addWidget(self.verticalWidget8)
 
         self.plainTextEdit_3 = QPlainTextEdit(self.horizontalWidget2)
         self.plainTextEdit_3.setObjectName(u"plainTextEdit_3")
@@ -1690,12 +1787,12 @@ class Ui_MainWindow(object):
         self.feiduichen_page.setObjectName(u"feiduichen_page")
         self.verticalLayout_23 = QVBoxLayout(self.feiduichen_page)
         self.verticalLayout_23.setObjectName(u"verticalLayout_23")
-        self.verticalWidget7 = QWidget(self.feiduichen_page)
-        self.verticalWidget7.setObjectName(u"verticalWidget7")
-        self.verticalWidget7.setMaximumSize(QSize(16777215, 200))
-        self.verticalLayout_25 = QVBoxLayout(self.verticalWidget7)
+        self.verticalWidget9 = QWidget(self.feiduichen_page)
+        self.verticalWidget9.setObjectName(u"verticalWidget9")
+        self.verticalWidget9.setMaximumSize(QSize(16777215, 200))
+        self.verticalLayout_25 = QVBoxLayout(self.verticalWidget9)
         self.verticalLayout_25.setObjectName(u"verticalLayout_25")
-        self.plainTextEdit_5 = QPlainTextEdit(self.verticalWidget7)
+        self.plainTextEdit_5 = QPlainTextEdit(self.verticalWidget9)
         self.plainTextEdit_5.setObjectName(u"plainTextEdit_5")
         self.plainTextEdit_5.setMinimumSize(QSize(0, 100))
         self.plainTextEdit_5.setMaximumSize(QSize(16777215, 16777215))
@@ -1704,12 +1801,58 @@ class Ui_MainWindow(object):
         self.verticalLayout_25.addWidget(self.plainTextEdit_5)
 
 
-        self.verticalLayout_23.addWidget(self.verticalWidget7)
+        self.verticalLayout_23.addWidget(self.verticalWidget9)
 
         self.horizontalWidget3 = QWidget(self.feiduichen_page)
         self.horizontalWidget3.setObjectName(u"horizontalWidget3")
         self.gridLayout_3 = QGridLayout(self.horizontalWidget3)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.horizontalWidget_3 = QWidget(self.horizontalWidget3)
+        self.horizontalWidget_3.setObjectName(u"horizontalWidget_3")
+        self.horizontalLayout_19 = QHBoxLayout(self.horizontalWidget_3)
+        self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
+        self.plainTextEdit_26 = QPlainTextEdit(self.horizontalWidget_3)
+        self.plainTextEdit_26.setObjectName(u"plainTextEdit_26")
+        self.plainTextEdit_26.setMinimumSize(QSize(0, 100))
+        self.plainTextEdit_26.setMaximumSize(QSize(16777215, 16777215))
+        self.plainTextEdit_26.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.horizontalLayout_19.addWidget(self.plainTextEdit_26)
+
+        self.plainTextEdit_27 = QPlainTextEdit(self.horizontalWidget_3)
+        self.plainTextEdit_27.setObjectName(u"plainTextEdit_27")
+        self.plainTextEdit_27.setMinimumSize(QSize(0, 100))
+        self.plainTextEdit_27.setMaximumSize(QSize(16777215, 16777215))
+        self.plainTextEdit_27.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.horizontalLayout_19.addWidget(self.plainTextEdit_27)
+
+
+        self.gridLayout_3.addWidget(self.horizontalWidget_3, 1, 2, 1, 1)
+
+        self.horizontalWidget4 = QWidget(self.horizontalWidget3)
+        self.horizontalWidget4.setObjectName(u"horizontalWidget4")
+        self.horizontalLayout_17 = QHBoxLayout(self.horizontalWidget4)
+        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.plainTextEdit_25 = QPlainTextEdit(self.horizontalWidget4)
+        self.plainTextEdit_25.setObjectName(u"plainTextEdit_25")
+        self.plainTextEdit_25.setMinimumSize(QSize(0, 100))
+        self.plainTextEdit_25.setMaximumSize(QSize(16777215, 16777215))
+        self.plainTextEdit_25.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.horizontalLayout_17.addWidget(self.plainTextEdit_25)
+
+        self.plainTextEdit_24 = QPlainTextEdit(self.horizontalWidget4)
+        self.plainTextEdit_24.setObjectName(u"plainTextEdit_24")
+        self.plainTextEdit_24.setMinimumSize(QSize(0, 100))
+        self.plainTextEdit_24.setMaximumSize(QSize(16777215, 16777215))
+        self.plainTextEdit_24.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.horizontalLayout_17.addWidget(self.plainTextEdit_24)
+
+
+        self.gridLayout_3.addWidget(self.horizontalWidget4, 1, 0, 1, 1)
+
         self.plainTextEdit_6 = QPlainTextEdit(self.horizontalWidget3)
         self.plainTextEdit_6.setObjectName(u"plainTextEdit_6")
         self.plainTextEdit_6.setMinimumSize(QSize(0, 100))
@@ -1718,6 +1861,45 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.plainTextEdit_6, 0, 0, 1, 1)
 
+        self.verticalWidget10 = QWidget(self.horizontalWidget3)
+        self.verticalWidget10.setObjectName(u"verticalWidget10")
+        self.verticalWidget10.setMinimumSize(QSize(200, 0))
+        self.verticalWidget10.setMaximumSize(QSize(16777215, 300))
+        self.verticalLayout_28 = QVBoxLayout(self.verticalWidget10)
+        self.verticalLayout_28.setObjectName(u"verticalLayout_28")
+        self.pushButton_25 = QPushButton(self.verticalWidget10)
+        self.pushButton_25.setObjectName(u"pushButton_25")
+        self.pushButton_25.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+
+        self.verticalLayout_28.addWidget(self.pushButton_25)
+
+        self.pushButton_5 = QPushButton(self.verticalWidget10)
+        self.pushButton_5.setObjectName(u"pushButton_5")
+        self.pushButton_5.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+
+        self.verticalLayout_28.addWidget(self.pushButton_5)
+
+        self.pushButton_15 = QPushButton(self.verticalWidget10)
+        self.pushButton_15.setObjectName(u"pushButton_15")
+        self.pushButton_15.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+
+        self.verticalLayout_28.addWidget(self.pushButton_15)
+
+        self.pushButton_16 = QPushButton(self.verticalWidget10)
+        self.pushButton_16.setObjectName(u"pushButton_16")
+        self.pushButton_16.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+
+        self.verticalLayout_28.addWidget(self.pushButton_16)
+
+        self.pushButton_4 = QPushButton(self.verticalWidget10)
+        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.pushButton_4.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+
+        self.verticalLayout_28.addWidget(self.pushButton_4)
+
+
+        self.gridLayout_3.addWidget(self.verticalWidget10, 0, 1, 2, 1)
+
         self.plainTextEdit_7 = QPlainTextEdit(self.horizontalWidget3)
         self.plainTextEdit_7.setObjectName(u"plainTextEdit_7")
         self.plainTextEdit_7.setMinimumSize(QSize(0, 100))
@@ -1725,42 +1907,6 @@ class Ui_MainWindow(object):
         self.plainTextEdit_7.setStyleSheet(u"background-color: rgb(33, 37, 43);")
 
         self.gridLayout_3.addWidget(self.plainTextEdit_7, 0, 2, 1, 1)
-
-        self.plainTextEdit_8 = QPlainTextEdit(self.horizontalWidget3)
-        self.plainTextEdit_8.setObjectName(u"plainTextEdit_8")
-        self.plainTextEdit_8.setMinimumSize(QSize(0, 100))
-        self.plainTextEdit_8.setMaximumSize(QSize(16777215, 16777215))
-        self.plainTextEdit_8.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-
-        self.gridLayout_3.addWidget(self.plainTextEdit_8, 1, 0, 1, 1)
-
-        self.plainTextEdit_9 = QPlainTextEdit(self.horizontalWidget3)
-        self.plainTextEdit_9.setObjectName(u"plainTextEdit_9")
-        self.plainTextEdit_9.setMinimumSize(QSize(0, 100))
-        self.plainTextEdit_9.setMaximumSize(QSize(16777215, 16777215))
-        self.plainTextEdit_9.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-
-        self.gridLayout_3.addWidget(self.plainTextEdit_9, 1, 2, 1, 1)
-
-        self.verticalWidget8 = QWidget(self.horizontalWidget3)
-        self.verticalWidget8.setObjectName(u"verticalWidget8")
-        self.verticalWidget8.setMinimumSize(QSize(100, 0))
-        self.verticalLayout_28 = QVBoxLayout(self.verticalWidget8)
-        self.verticalLayout_28.setObjectName(u"verticalLayout_28")
-        self.pushButton_5 = QPushButton(self.verticalWidget8)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        self.pushButton_5.setStyleSheet(u"background-color: rgb(52, 59, 72);")
-
-        self.verticalLayout_28.addWidget(self.pushButton_5)
-
-        self.pushButton_4 = QPushButton(self.verticalWidget8)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setStyleSheet(u"background-color: rgb(52, 59, 72);")
-
-        self.verticalLayout_28.addWidget(self.pushButton_4)
-
-
-        self.gridLayout_3.addWidget(self.verticalWidget8, 0, 1, 2, 1)
 
 
         self.verticalLayout_23.addWidget(self.horizontalWidget3)
@@ -1776,25 +1922,25 @@ class Ui_MainWindow(object):
         self.DH_page.setObjectName(u"DH_page")
         self.verticalLayout_24 = QVBoxLayout(self.DH_page)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
-        self.horizontalWidget4 = QWidget(self.DH_page)
-        self.horizontalWidget4.setObjectName(u"horizontalWidget4")
-        self.horizontalWidget4.setMinimumSize(QSize(0, 100))
-        self.horizontalLayout_10 = QHBoxLayout(self.horizontalWidget4)
+        self.horizontalWidget5 = QWidget(self.DH_page)
+        self.horizontalWidget5.setObjectName(u"horizontalWidget5")
+        self.horizontalWidget5.setMinimumSize(QSize(0, 100))
+        self.horizontalLayout_10 = QHBoxLayout(self.horizontalWidget5)
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
-        self.verticalWidget9 = QWidget(self.horizontalWidget4)
-        self.verticalWidget9.setObjectName(u"verticalWidget9")
-        self.verticalWidget9.setMinimumSize(QSize(0, 0))
-        self.verticalWidget9.setMaximumSize(QSize(800, 16777215))
-        self.verticalLayout_35 = QVBoxLayout(self.verticalWidget9)
+        self.verticalWidget11 = QWidget(self.horizontalWidget5)
+        self.verticalWidget11.setObjectName(u"verticalWidget11")
+        self.verticalWidget11.setMinimumSize(QSize(0, 0))
+        self.verticalWidget11.setMaximumSize(QSize(800, 16777215))
+        self.verticalLayout_35 = QVBoxLayout(self.verticalWidget11)
         self.verticalLayout_35.setObjectName(u"verticalLayout_35")
-        self.plainTextEdit_16 = QPlainTextEdit(self.verticalWidget9)
+        self.plainTextEdit_16 = QPlainTextEdit(self.verticalWidget11)
         self.plainTextEdit_16.setObjectName(u"plainTextEdit_16")
         self.plainTextEdit_16.setMaximumSize(QSize(16777215, 400))
         self.plainTextEdit_16.setStyleSheet(u"background-color: rgb(33, 37, 43);")
 
         self.verticalLayout_35.addWidget(self.plainTextEdit_16)
 
-        self.plainTextEdit_19 = QPlainTextEdit(self.verticalWidget9)
+        self.plainTextEdit_19 = QPlainTextEdit(self.verticalWidget11)
         self.plainTextEdit_19.setObjectName(u"plainTextEdit_19")
         self.plainTextEdit_19.setMaximumSize(QSize(16777215, 100))
         self.plainTextEdit_19.setStyleSheet(u"background-color: rgb(33, 37, 43);")
@@ -1802,21 +1948,21 @@ class Ui_MainWindow(object):
         self.verticalLayout_35.addWidget(self.plainTextEdit_19)
 
 
-        self.horizontalLayout_10.addWidget(self.verticalWidget9)
+        self.horizontalLayout_10.addWidget(self.verticalWidget11)
 
-        self.verticalWidget10 = QWidget(self.horizontalWidget4)
-        self.verticalWidget10.setObjectName(u"verticalWidget10")
-        self.verticalWidget10.setMaximumSize(QSize(350, 16777215))
-        self.verticalLayout_40 = QVBoxLayout(self.verticalWidget10)
+        self.verticalWidget12 = QWidget(self.horizontalWidget5)
+        self.verticalWidget12.setObjectName(u"verticalWidget12")
+        self.verticalWidget12.setMaximumSize(QSize(350, 16777215))
+        self.verticalLayout_40 = QVBoxLayout(self.verticalWidget12)
         self.verticalLayout_40.setObjectName(u"verticalLayout_40")
-        self.plainTextEdit_20 = QPlainTextEdit(self.verticalWidget10)
+        self.plainTextEdit_20 = QPlainTextEdit(self.verticalWidget12)
         self.plainTextEdit_20.setObjectName(u"plainTextEdit_20")
         self.plainTextEdit_20.setMaximumSize(QSize(16777215, 300))
         self.plainTextEdit_20.setStyleSheet(u"background-color: rgb(33, 37, 43);")
 
         self.verticalLayout_40.addWidget(self.plainTextEdit_20)
 
-        self.formWidget_2 = QWidget(self.verticalWidget10)
+        self.formWidget_2 = QWidget(self.verticalWidget12)
         self.formWidget_2.setObjectName(u"formWidget_2")
         self.formWidget_2.setMaximumSize(QSize(16777215, 50))
         self.horizontalLayout_14 = QHBoxLayout(self.formWidget_2)
@@ -1837,7 +1983,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_40.addWidget(self.formWidget_2)
 
-        self.formWidget = QWidget(self.verticalWidget10)
+        self.formWidget = QWidget(self.verticalWidget12)
         self.formWidget.setObjectName(u"formWidget")
         self.formWidget.setMaximumSize(QSize(16777215, 30))
         self.horizontalLayout_13 = QHBoxLayout(self.formWidget)
@@ -1859,7 +2005,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_40.addWidget(self.formWidget)
 
-        self.pushButton_12 = QPushButton(self.verticalWidget10)
+        self.pushButton_12 = QPushButton(self.verticalWidget12)
         self.pushButton_12.setObjectName(u"pushButton_12")
         self.pushButton_12.setMinimumSize(QSize(200, 0))
         self.pushButton_12.setLayoutDirection(Qt.LeftToRight)
@@ -1868,10 +2014,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_40.addWidget(self.pushButton_12, 0, Qt.AlignHCenter)
 
 
-        self.horizontalLayout_10.addWidget(self.verticalWidget10)
+        self.horizontalLayout_10.addWidget(self.verticalWidget12)
 
 
-        self.verticalLayout_24.addWidget(self.horizontalWidget4)
+        self.verticalLayout_24.addWidget(self.horizontalWidget5)
 
         self.label_5 = QLabel(self.DH_page)
         self.label_5.setObjectName(u"label_5")
@@ -1880,6 +2026,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_24.addWidget(self.label_5)
 
         self.stackedWidget.addWidget(self.DH_page)
+        self.SSL_page = QWidget()
+        self.SSL_page.setObjectName(u"SSL_page")
+        self.verticalLayout_37 = QVBoxLayout(self.SSL_page)
+        self.verticalLayout_37.setObjectName(u"verticalLayout_37")
+        self.label_7 = QLabel(self.SSL_page)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_37.addWidget(self.label_7)
+
+        self.stackedWidget.addWidget(self.SSL_page)
 
         self.verticalLayout_15.addWidget(self.stackedWidget)
 
@@ -2021,8 +2178,19 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.pushButton_2.clicked.connect(MainWindow.DES_decrypt)
         self.pushButton_3.clicked.connect(MainWindow.DES_encrypt)
+        self.pushButton_8.clicked.connect(MainWindow.Affine_encrypt)
+        self.pushButton_9.clicked.connect(MainWindow.Affine_decrypt)
+        self.pushButton_7.clicked.connect(MainWindow.RC4_encrypt)
+        self.pushButton_6.clicked.connect(MainWindow.RC4_decrypt)
+        self.pushButton_10.clicked.connect(MainWindow.LSFR_encrypt)
+        self.pushButton_11.clicked.connect(MainWindow.LSFR_decrypt)
+        self.pushButton_25.clicked.connect(MainWindow.RSA_gen_key)
+        self.pushButton_5.clicked.connect(MainWindow.RSA_pubkey_encrypt)
+        self.pushButton_15.clicked.connect(MainWindow.RSA_pubkey_decrypt)
+        self.pushButton_16.clicked.connect(MainWindow.RSA_privkey_encrypt)
+        self.pushButton_4.clicked.connect(MainWindow.RSA_privkey_decrypt)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(7)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -2036,10 +2204,12 @@ class Ui_MainWindow(object):
         self.btn_home.setText(QCoreApplication.translate("MainWindow", u"Home", None))
         self.btn_widgets.setText(QCoreApplication.translate("MainWindow", u"Widgets", None))
         self.btn_fangshe.setText(QCoreApplication.translate("MainWindow", u"\u4eff\u5c04\u52a0\u5bc6", None))
-        self.btn_liu.setText(QCoreApplication.translate("MainWindow", u"\u6d41\u5bc6\u7801\u52a0\u5bc6", None))
-        self.btn_duichen.setText(QCoreApplication.translate("MainWindow", u"\u5bf9\u79f0\u52a0\u5bc6", None))
-        self.btn_feiduichen.setText(QCoreApplication.translate("MainWindow", u"\u975e\u5bf9\u79f0\u52a0\u5bc6", None))
+        self.btn_liu.setText(QCoreApplication.translate("MainWindow", u"RC4\u52a0\u5bc6", None))
+        self.btn_liu_2.setText(QCoreApplication.translate("MainWindow", u"LFSR\u52a0\u5bc6", None))
+        self.btn_duichen.setText(QCoreApplication.translate("MainWindow", u"DES\u5bf9\u79f0\u52a0\u5bc6", None))
+        self.btn_feiduichen.setText(QCoreApplication.translate("MainWindow", u"RSA\u975e\u5bf9\u79f0\u52a0\u5bc6", None))
         self.btn_DH.setText(QCoreApplication.translate("MainWindow", u"DH\u8ba4\u8bc1\u534f\u8bae\u4ee5\u53ca\u589e\u5f3a", None))
+        self.btn_SSL.setText(QCoreApplication.translate("MainWindow", u"SSL\u6f14\u793a", None))
         self.btn_save.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.btn_exit.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.toggleLeftBox.setText(QCoreApplication.translate("MainWindow", u"Left Box", None))
@@ -2157,42 +2327,51 @@ class Ui_MainWindow(object):
 "\n"
 "\u89e3\u5bc6\u51fd\u6570\uff1aD(x) = a^{-1} (x - b) (mod m)\uff0c\u5176\u4e2d a^{-1} \u662f a \u5728Z_{m}\u7fa4\u7684\u4e58\u6cd5\u9006\u5143\u3002", None))
         self.plainTextEdit_15.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u8f93\u5165\u5f85\u52a0\u89e3\u5bc6\u5185\u5bb9", None))
-        self.lineEdit_5.setPlaceholderText(QCoreApplication.translate("MainWindow", u"a,\u5fc5\u987b\u662f\uff081,3,5,7,9,11,15,17,19,21,23,25\uff09\u4e2d\u7684\u4e00\u4e2a", None))
-        self.lineEdit_6.setPlaceholderText(QCoreApplication.translate("MainWindow", u"b,0~25", None))
+        self.lineEdit_5.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u5bc6\u94a51, \u5fc5\u987b\u4e0e26\u4e92\u7d20", None))
+        self.lineEdit_6.setText("")
+        self.lineEdit_6.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u5bc6\u94a52, \u8303\u56f4\u5fc5\u987b\u4f4d\u4e8e [0, 26)", None))
         self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"\u52a0  \u5bc6", None))
         self.pushButton_9.setText(QCoreApplication.translate("MainWindow", u"\u89e3  \u5bc6", None))
         self.plainTextEdit_14.setPlaceholderText(QCoreApplication.translate("MainWindow", u"result", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"fangshe", None))
-        self.plainTextEdit_10.setPlainText(QCoreApplication.translate("MainWindow", u"  \u5e8f\u5217\u5bc6\u7801\u4e5f\u79f0\u4e3a\u6d41\u5bc6\u7801\uff08Stream Cipher\uff09\uff0c\u5b83\u662f\u5bf9\u79f0\u5bc6\u7801\u7b97\u6cd5\u7684\u4e00\u79cd\u3002\u5e8f\u5217\u5bc6\u7801\u5177\u6709\u5b9e\u73b0\u7b80\u5355\u3001\u4fbf\u4e8e\u786c\u4ef6\u5b9e\u65bd\u3001\u52a0\u89e3\u5bc6\u5904\u7406\u901f\u5ea6\u5feb\u3001\u6ca1\u6709\u6216\u53ea\u6709\u6709\u9650\u7684\u9519\u8bef\u4f20\u64ad\u7b49\u7279\u70b9\uff0c\u56e0\u6b64\u5728\u5b9e\u9645\u5e94\u7528\u4e2d\uff0c\u7279\u522b\u662f\u4e13\u7528\u6216\u673a\u5bc6\u673a\u6784\u4e2d\u4fdd\u6301\u7740\u4f18\u52bf\uff0c\u5178\u578b\u7684\u5e94\u7528\u9886\u57df\u5305\u62ec\u65e0\u7ebf\u901a\u4fe1\u3001\u5916\u4ea4\u901a\u4fe1\u3002 1949\u5e74Shannon\u8bc1\u660e\u4e86\u53ea\u6709\u4e00\u6b21\u4e00\u5bc6\u7684\u5bc6\u7801\u4f53\u5236\u662f\u7edd\u5bf9\u5b89\u5168\u7684\uff0c\u8fd9\u7ed9\u5e8f\u5217\u5bc6\u7801\u6280\u672f\u7684\u7814\u7a76\u4ee5\u5f3a\u5927\u7684\u652f\u6301\uff0c\u5e8f\u5217\u5bc6\u7801\u65b9\u6848\u7684\u53d1\u5c55\u662f\u6a21\u4eff\u4e00\u6b21"
-                        "\u4e00\u5bc6\u7cfb\u7edf\u7684\u5c1d\u8bd5\uff0c\u6216\u8005\u8bf4\u201c\u4e00\u6b21\u4e00\u5bc6\u201d\u7684\u5bc6\u7801\u65b9\u6848\u662f\u5e8f\u5217\u5bc6\u7801\u7684\u96cf\u5f62\u3002\u5982\u679c\u5e8f\u5217\u5bc6\u7801\u6240\u4f7f\u7528\u7684\u662f\u771f\u6b63\u968f\u673a\u65b9\u5f0f\u7684\u3001\u4e0e\u6d88\u606f\u6d41\u957f\u5ea6\u76f8\u540c\u7684\u5bc6\u94a5\u6d41\uff0c\u5219\u6b64\u65f6\u7684\u5e8f\u5217\u5bc6\u7801\u5c31\u662f\u4e00\u6b21\u4e00\u5bc6\u7684\u5bc6\u7801\u4f53\u5236\u3002\u82e5\u80fd\u4ee5\u4e00\u79cd\u65b9\u5f0f\u4ea7\u751f\u4e00\u968f\u673a\u5e8f\u5217\uff08\u5bc6\u94a5\u6d41\uff09\uff0c\u8fd9\u4e00\u5e8f\u5217\u7531\u5bc6\u94a5\u6240\u786e\u5b9a\uff0c\u5219\u5229\u7528\u8fd9\u6837\u7684\u5e8f\u5217\u5c31\u53ef\u4ee5\u8fdb\u884c\u52a0\u5bc6\uff0c\u5373\u5c06\u5bc6\u94a5\u3001\u660e\u6587\u8868\u793a\u6210\u8fde\u7eed\u7684\u7b26\u53f7\u6216\u4e8c\u8fdb\u5236\uff0c\u5bf9\u5e94\u5730\u8fdb\u884c\u52a0\u5bc6,\u52a0\u89e3\u5bc6\u65f6\u4e00\u6b21\u5904\u7406\u660e\u6587\u4e2d\u7684\u4e00\u4e2a"
-                        "\u6216\u51e0\u4e2a\u6bd4\u7279\u3002\n"
-"  \u5728\u5e8f\u5217\u5bc6\u7801\u4e2d\uff0c\u5bc6\u94a5\u6d41\u7531\u5bc6\u94a5\u6d41\u53d1\u751f\u5668f\u4ea7\u751f\uff1azi=f(k,si)\uff0c\u8fd9\u91cc\u7684si\u662f\u52a0\u5bc6\u5668\u4e2d\u5b58\u50a8\u5668\uff08\u8bb0\u5fc6\u5143\u4ef6\uff09\u5728i\u65f6\u523b\u7684\u72b6\u6001\u3002\u6839\u636e\u52a0\u5bc6\u5668\u4e2d\u7684\u8bb0\u5fc6\u5143\u4ef6si\u7684\u5b58\u8d2e\u72b6\u6001\u662f\u5426\u4f9d\u8d56\u4e8e\u660e\u6587\u5b57\u7b26\uff0c\u5e8f\u5217\u5bc6\u7801\u53ef\u8fdb\u4e00\u6b65\u5206\u6210\u540c\u6b65\u548c\u81ea\u540c\u6b65\u4e24\u79cd\u3002\u5982\u679csi\u72ec\u7acb\u4e8e\u660e\u6587\u5b57\u7b26\u5219\u79f0\u4e3a\u540c\u6b65\u6d41\u5bc6\u7801\uff0c\u5426\u5219\u79f0\u4e3a\u81ea\u540c\u6b65\u6d41\u5bc6\u7801\u3002", None))
+        self.plainTextEdit_10.setPlainText(QCoreApplication.translate("MainWindow", u"RC4", None))
         self.plainTextEdit_12.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u8f93\u5165\u5f85\u52a0\u89e3\u5bc6\u5185\u5bb9", None))
-        self.lineEdit_3.setPlaceholderText(QCoreApplication.translate("MainWindow", u"a,\u5fc5\u987b\u662f\uff081,3,5,7,9,11,15,17,19,21,23,25\uff09\u4e2d\u7684\u4e00\u4e2a", None))
-        self.lineEdit_4.setPlaceholderText(QCoreApplication.translate("MainWindow", u"b,0~25", None))
-        self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"\u52a0  \u5bc6", None))
-        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"\u89e3  \u5bc6", None))
-        self.plainTextEdit_11.setPlaceholderText(QCoreApplication.translate("MainWindow", u"result", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"liu", None))
+        self.plainTextEdit_18.setPlaceholderText(QCoreApplication.translate("MainWindow", u"key", None))
+        self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"RC4 \u52a0  \u5bc6", None))
+        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"RC4 \u89e3  \u5bc6", None))
+        self.plainTextEdit_11.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u7ed3\u679c", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"RC4", None))
+        self.plainTextEdit_17.setPlaceholderText(QCoreApplication.translate("MainWindow", u"LSFR encryption", None))
+        self.plainTextEdit_22.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u8f93\u5165\u5f85\u52a0\u89e3\u5bc6\u5185\u5bb9", None))
+        self.plainTextEdit_23.setPlaceholderText(QCoreApplication.translate("MainWindow", u"key", None))
+        self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"LSFR \u52a0  \u5bc6", None))
+        self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"LSFR \u89e3  \u5bc6", None))
+        self.plainTextEdit_21.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u7ed3\u679c", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"LSFR", None))
         self.plainTextEdit_2.setPlainText(QCoreApplication.translate("MainWindow", u"     DES\u52a0\u5bc6/\u89e3\u5bc6\n"
 "\n"
 "    3DES\uff08Triple Des\uff09\u52a0\u5bc6\u89e3\u5bc6\u5728\u7ebf\u5de5\u5177\u3002\u652f\u63013DES\u53cc\u500d\u548c\u4e09\u500d\u7684\u5bc6\u94a5\u3002\u5bc6\u94a5\u957f\u5ea6\u5206\u522b\u4e3a\u652f\u6301\u4e3a128/192\u4f4d\u3002\u53cc\u500d\u5bc6\u94a5\u53ef\u7528\u4e09\u500d\u5bc6\u94a5\u66ff\u6362\uff0c\u53cc\u500d\u5bc6\u94a5\u7684\u524d64\u4f4d+\u540e64\u4f4d+\u524d64\u4f4d\u7b49\u4e8e\u66ff\u4ee3\u7684\u4e09\u500d\u5bc6\u94a5\u3002\u5bc6\u94a5\u957f\u5ea6\u4e0d\u8db3\u65f6\uff0c\u5c06\u4ee50x00\u586b\u5145\u3002IV\u4e5f\u4e00\u6837\uff0c\u4ee5\u6b64\u65b9\u5f0f\u586b\u5145\u3002\u8d85\u51fa\u90e8\u5206\u5c06\u88ab\u5ffd\u7565\u3002\u5982\u679c\u6ca1\u6709\u7279\u522b\u6307\u660e\u5e73\u53f0\u5c06\u4f7f\u7528UTF8\u7f16\u7801\u5904\u7406\u6570\u636e\uff08\u5982KEY/IV\uff09\u3002\u672c\u5de5\u5177\u672a\u4f5c\u5168\u9762\u6d4b\u8bd5\uff0c\u5982\u679c\u53d1\u73b0\u95ee\u9898\u8bf7\u7ed9\u4e88\u53cd\u9988\u3002", None))
         self.plainTextEdit_4.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u9700\u8981\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u5185\u5bb9", None))
         self.lineEdit_2.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u8f93\u5165\u79d8\u94a5", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"jiami", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"jiemi", None))
+        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u52a0\u5bc6", None))
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"\u89e3\u5bc6", None))
         self.plainTextEdit_3.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u7ed3\u679c", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"duichen", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"DES", None))
         self.plainTextEdit_5.setPlainText(QCoreApplication.translate("MainWindow", u"RSA\u52a0\u5bc6\u7b97\u6cd5\u662f\u4e00\u79cd\u975e\u5bf9\u79f0\u52a0\u5bc6\u7b97\u6cd5\u3002\n"
 "\n"
 "\u52a0\u5bc6\u7684\u660e\u6587\u592a\u957f\u5219\u4f1a\u51fa\u9519\uff0c\u89e3\u51b3\u65b9\u6cd5\uff1a\u52a0\u5bc6\u7684\u65f6\u5019117\u4e2a\u5b57\u7b26\u52a0\u5bc6\u4e00\u6b21\uff0c\u7136\u540e\u628a\u6240\u6709\u7684\u5bc6\u6587\u62fc\u63a5\u6210\u4e00\u4e2a\u5bc6\u6587\uff1b\u89e3\u5bc6\u7684\u65f6\u5019\u9700\u8981128\u4e2a\u5b57\u7b26\u89e3\u5bc6\u4e00\u4e0b\uff0c\u7136\u540e\u62fc\u63a5\u6210\u6570\u636e\u3002", None))
-        self.plainTextEdit_6.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u660e\u6587", None))
-        self.plainTextEdit_7.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u5bc6\u6587", None))
-        self.plainTextEdit_8.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u516c\u94a5", None))
-        self.plainTextEdit_9.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u79c1\u94a5", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"RSA\u52a0\u5bc6", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"RSA\u89e3\u5bc6", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"feiduichen", None))
+        self.plainTextEdit_26.setPlaceholderText(QCoreApplication.translate("MainWindow", u"d \u79c1\u94a5\u4e4b\u4e00", None))
+        self.plainTextEdit_27.setPlaceholderText(QCoreApplication.translate("MainWindow", u"n \u79c1\u94a5\u4e4b\u4e00", None))
+        self.plainTextEdit_25.setPlaceholderText(QCoreApplication.translate("MainWindow", u"e \u516c\u94a5\u4e4b\u4e00", None))
+        self.plainTextEdit_24.setPlaceholderText(QCoreApplication.translate("MainWindow", u"n \u516c\u94a5\u4e4b\u4e00", None))
+        self.plainTextEdit_6.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u9700\u8981\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u5185\u5bb9", None))
+        self.pushButton_25.setText(QCoreApplication.translate("MainWindow", u"RSA \u5bc6\u94a5\u751f\u6210", None))
+        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"RSA \u516c\u94a5\u52a0\u5bc6", None))
+        self.pushButton_15.setText(QCoreApplication.translate("MainWindow", u"RSA \u516c\u94a5\u89e3\u5bc6", None))
+        self.pushButton_16.setText(QCoreApplication.translate("MainWindow", u"RSA \u79c1\u94a5\u52a0\u5bc6", None))
+        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"RSA \u79c1\u94a5\u89e3\u5bc6", None))
+        self.plainTextEdit_7.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u7ed3\u679c", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"RSA", None))
         self.plainTextEdit_16.setPlaceholderText(QCoreApplication.translate("MainWindow", u"output", None))
         self.plainTextEdit_19.setPlaceholderText(QCoreApplication.translate("MainWindow", u"input", None))
         self.plainTextEdit_20.setPlaceholderText(QCoreApplication.translate("MainWindow", u"DH fsdfsdafs", None))
@@ -2202,6 +2381,7 @@ class Ui_MainWindow(object):
         self.pushButton_14.setText(QCoreApplication.translate("MainWindow", u"listen", None))
         self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"refuse / stop connect", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"DH", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"SSL", None))
         self.btn_message.setText(QCoreApplication.translate("MainWindow", u"Message", None))
         self.btn_print.setText(QCoreApplication.translate("MainWindow", u"Print", None))
         self.btn_logout.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
