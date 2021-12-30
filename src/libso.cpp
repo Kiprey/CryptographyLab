@@ -6,19 +6,24 @@
 extern "C" {
     // DES 协议相关
     void DES_generateKeys(const char* k){
+        cout << "DES key: [" << k << "]" << endl;
         string key = k;
         generateKeys(key);
     }
     const char* DES_encrypt(const char* s) {
+        cout << "DES enc_plain: [" << s << "]" << endl;
         string msg = s;
         static string ret;
         ret = encrypt(msg);
+        cout << "DES enc_cipher: [" << ret << "]" << endl;
         return ret.c_str();
     }
     const char* DES_decrypt(const char *s) {
+        cout << "DES dec_cipher: [" << s << "]" << endl;
         string msg = s;
         static string ret;
         ret = decrypt(msg);
+        cout << "DES dec_plain: [" << ret << "]" << endl;
         return ret.c_str();
     }
 
@@ -172,17 +177,21 @@ extern "C" {
     }
 
     void LFSR_set_key(unsigned char* c, const char* key) {
+        cout << "LFSR_set_key: [" << key << "]" << endl;
         coefInit(c, key);
     }
 
     const char* LFSR_enc_dec(unsigned char* c, const char* data) {
+        cout << "LFSR_enc_dec data: [" << data << "]" << endl;
         static string ret;
         ret = LFSR(data, c);
         return ret.c_str();
     }
 
     void RSA_gen_key(int* e, int* d, int* n) {
+        cout<< "start" <<endl;
         key k = ProduceKey();
+        cout<< "end" <<endl;
         *e = k.e;
         *d = k.d;
         *n = k.n;

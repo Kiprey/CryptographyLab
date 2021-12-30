@@ -15,6 +15,7 @@ extern "C" {
     /**
      * @brief 设置 DES 密钥
      * @param k 密钥字符串参数
+     * @note key 必须是纯数字
      */ 
     void DES_generateKeys(const char* k);
 
@@ -216,7 +217,7 @@ extern "C" {
     /**
      * @brief RSA 公钥解密
      * @param data 密文
-     * @param d 公钥之一
+     * @param e 公钥之一
      * @param n 公钥之一
      * @return 解密后的结果
      */

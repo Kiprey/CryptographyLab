@@ -1,6 +1,8 @@
-#include <string>
 #include <iostream>
+#include <string>
+#include <cmath>
 #include <unistd.h>
+#include <stdlib.h>
 #include "time.h"
 #include "RSA.h"
 using namespace std;
@@ -17,21 +19,12 @@ static unsigned int PowerModule(int a, int b, int n);
 bool JudgePrimeNum(unsigned int num)
 {
     unsigned int devider = 2;
-    for (; devider < num / 2; devider++)
+    for (; devider < sqrt(num); devider++)
     {
         if (num % devider == 0)
             return false;
     }
     return true;
-}
-
-//产生a到b-1的随机数
-unsigned int RandomlyGenerate(unsigned int a, unsigned int b)
-{
-    unsigned int e = 0;
-    srand((unsigned int)time(0)); //设置随机数种子
-    e = a + rand() % (b - a - 1);
-    return e; //随机数
 }
 
 //求最大公因数
@@ -53,11 +46,37 @@ unsigned int gcd(unsigned int big, unsigned int small)
 //判断最大公因数是否是1，是1的话两个数就互质
 bool RelativePrime(unsigned int big, unsigned int small)
 {
+    if (big < small)
+    {
+        unsigned temp = small;
+        small = big;
+        big = temp;
+    }
     unsigned int M = gcd(big, small);
     if (M == 1)
         return true;
     else
         return false;
+}
+//产生a到b-1的素数,且与t互质
+unsigned int RandomlyGeneratePrime(unsigned int a, unsigned int b, unsigned int t)
+{
+    unsigned int e = 0;
+    srand((unsigned int)time(0)); //设置随机数种子
+    e = a + rand() % (b - a - 1); //产生随机数e，从e开始找素数作为我们随机生成的素数
+    do
+    {
+        if (e >= b) //若该素数大于b-1，重新生成一个随机数
+        {
+            e = a + rand() % (b - a - 1);
+        }
+        if (JudgePrimeNum(e) && RelativePrime(e, t)) //判断e是否为素数,且与t互质
+        {
+            break;
+        }
+    } while (e++);
+    cout << e << endl;
+    return e;
 }
 
 //求e*d = 1 mod (p-1)(q-1) 中的d
@@ -78,25 +97,11 @@ int CalculateD(unsigned int e, unsigned int model)
 key ProduceKey()
 {
     key k;
-    //g_p，g_q不超过256，g_n不会超过2^16
-    g_p = RandomlyGenerate(3, 255);
-    while (!JudgePrimeNum(g_p))
-    {
-        g_p = RandomlyGenerate(3, 255);
-    }
-    sleep(1);
-    g_q = RandomlyGenerate(3, 255);
-    while (!JudgePrimeNum(g_q))
-    {
-        g_q = RandomlyGenerate(3, 255);
-    }
+    g_p = RandomlyGeneratePrime(3, 65536 / 128, 1);  
+    g_q = RandomlyGeneratePrime(3, 65536 / g_p, 1); //使k.n=g_p*g_q不超过2^16
     k.n = g_p * g_q;
-    int t = (g_p - 1) * (g_q - 1);
-    k.e = RandomlyGenerate(2, t);
-    while (!RelativePrime(t, k.e))
-    {
-        k.e = RandomlyGenerate(2, t);
-    }
+    unsigned int t = (g_p - 1) * (g_q - 1);
+    k.e = RandomlyGeneratePrime(2, t, t);
     k.d = CalculateD(k.e, t);
     return k;
 }
