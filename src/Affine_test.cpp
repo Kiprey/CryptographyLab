@@ -31,7 +31,7 @@ int main()
             while (1)
             {
                 cout << " Please enter plaintext!" << endl;
-                cout<< "Note: Only 26 letters can be encrypted!"<<endl;
+                cout << "Note: Only 26 letters can be encrypted!" << endl;
                 char c = cin.get(); //读取多余的回车符
                 getline(cin, clear_text);
                 //保证输入不为空
@@ -43,7 +43,7 @@ int main()
             while (1)
             {
                 cout << " Please enter key1,key2!" << endl;
-                cout<< "Note: key1 must be prime with 26 and 0<=key2<26!"<<endl;
+                cout << "Note: key1 must be prime with 26 and 0<=key2!" << endl;
                 cin >> key1 >> key2;
                 //key1，key2可用,进行加密，否则重新输入key1，key2
                 if (affineEncryption(key1, key2, clear_text, ciphertext))
@@ -68,17 +68,9 @@ int main()
                 else
                     break;
             }
-            while (1)
-            {
-                cout << " Please enter key1,key2!" << endl;
-                cin >> key1 >> key2;
-                //key1，key2可用,进行解密，否则重新输入key1，key2
-                if (affineDecryption(key1, key2, ciphertext, clear_text))
-                    break;
-                else
-                    cout << "Invalid input! Please enter again. " << endl;
-            }
-
+            cout << " Please enter key1,key2!" << endl;
+            cin >> key1 >> key2;
+            affineDecryption(key1, key2, ciphertext, clear_text);
             cout << "clear_text: " << clear_text << endl;
             break;
 
