@@ -69,7 +69,7 @@ bool affineEncryption(int key1, int key2, string plaintext, string &ciphertext)
 
 bool affineDecryption(int key1, int key2, string ciphertext, string &clear_text)
 {
-    if (gcd(26, key1) == 1 && key1 >= 0 && key2 >= 0 && key1 < 26 && key2 < 26)
+    if (gcd(26, key1) == 1 && key1 >= 0 && key2 >= 0 && key1 < 26)
     {
         key2 = key2 % 26;
         clear_text = ""; //清空明文
