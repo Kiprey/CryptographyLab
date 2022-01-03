@@ -62,4 +62,21 @@ openssl verify -verbose -x509_strict -CAfile ca.crt client.crt
 
 之后，执行 SSL_test 并根据输出进行输入即可正常使用。
 
-## 环境
+## 运行 prequires
+
+python版本为3.9.2，依赖安装：
+
+````bash
+# 项目Ui基于PySide6
+pip install --user PySide6
+# pwn-tools开启线程
+pip install --user pwn-tools
+````
+
+安装完成后在 `CryptographyLab/src/Modern_GUI_PyDracula_PySide6_or_PyQt6` 目录下运行 `main.py`
+
+如果遇到Asian问题,执行
+
+````bash
+export ASAN_OPTIONS=verify_asan_link_order=0
+````
