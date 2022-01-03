@@ -55,7 +55,7 @@ class RecvWorkerThread(QThread):
         global recv_thread, sub_process
         while True:
             try:
-                output = sub_process.recvline()
+                output = sub_process.recv(timeout=0.3)
             except EOFError:
                 print("EOF in recv_msg_worker")
                 break
