@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1296</width>
-    <height>787</height>
+    <width>1155</width>
+    <height>763</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -1148,76 +1148,6 @@ Button */
                   </property>
                  </widget>
                 </item>
-                <item>
-                 <widget class="QPushButton" name="btn_save">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>45</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>10</pointsize>
-                    <italic>false</italic>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="layoutDirection">
-                   <enum>Qt::LeftToRight</enum>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-image: url(:/icons/images/icons/cil-save.png)</string>
-                  </property>
-                  <property name="text">
-                   <string>Save</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btn_exit">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>45</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>10</pointsize>
-                    <italic>false</italic>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="layoutDirection">
-                   <enum>Qt::LeftToRight</enum>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-image: url(:/icons/images/icons/cil-x.png);</string>
-                  </property>
-                  <property name="text">
-                   <string>Exit</string>
-                  </property>
-                 </widget>
-                </item>
                </layout>
               </widget>
              </item>
@@ -2057,7 +1987,7 @@ p, li { white-space: pre-wrap; }
                       <number>-4</number>
                      </property>
                      <property name="currentIndex">
-                      <number>6</number>
+                      <number>8</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -2359,7 +2289,7 @@ background-repeat: no-repeat;</string>
                                 <rect>
                                  <x>0</x>
                                  <y>0</y>
-                                 <width>353</width>
+                                 <width>283</width>
                                  <height>218</height>
                                 </rect>
                                </property>
@@ -3090,7 +3020,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                              <string notr="true">background-color: rgb(33, 37, 43);</string>
                             </property>
                             <property name="plainText">
-                             <string>RC4</string>
+                             <string>RC4  种子密钥可配置</string>
                             </property>
                            </widget>
                           </item>
@@ -3271,8 +3201,11 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                             <property name="styleSheet">
                              <string notr="true">background-color: rgb(33, 37, 43);</string>
                             </property>
+                            <property name="plainText">
+                             <string>LSFR encryption 	种子密钥可配置</string>
+                            </property>
                             <property name="placeholderText">
-                             <string>LSFR encryption</string>
+                             <string/>
                             </property>
                            </widget>
                           </item>
@@ -3418,7 +3351,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                              <string notr="true">background-color: rgb(33, 37, 43);</string>
                             </property>
                             <property name="plainText">
-                             <string>     DES加密/解密
+                             <string>     DES加密/解密 加密密钥可配置
 
     3DES（Triple Des）加密解密在线工具。支持3DES双倍和三倍的密钥。密钥长度分别为支持为128/192位。双倍密钥可用三倍密钥替换，双倍密钥的前64位+后64位+前64位等于替代的三倍密钥。密钥长度不足时，将以0x00填充。IV也一样，以此方式填充。超出部分将被忽略。如果没有特别指明平台将使用UTF8编码处理数据（如KEY/IV）。本工具未作全面测试，如果发现问题请给予反馈。</string>
                             </property>
@@ -3886,8 +3819,17 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                                <property name="styleSheet">
                                 <string notr="true">background-color: rgb(33, 37, 43);</string>
                                </property>
+                               <property name="plainText">
+                                <string>D-H认证协议及增强
+
+有两个参与实体(C/S模式)，必须有网络通信部分
+
+实现消息完整性验证及来源验证的增强设计
+  散列函数SHA-1或MD5，数字签名RSA
+</string>
+                               </property>
                                <property name="placeholderText">
-                                <string>DH fsdfsdafs</string>
+                                <string/>
                                </property>
                               </widget>
                              </item>
@@ -3911,6 +3853,9 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                                   <property name="styleSheet">
                                    <string notr="true">background-color: rgb(33, 37, 43);</string>
                                   </property>
+                                  <property name="text">
+                                   <string>127.0.0.1</string>
+                                  </property>
                                   <property name="placeholderText">
                                    <string>ip</string>
                                   </property>
@@ -3920,6 +3865,9 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                                  <widget class="QLineEdit" name="lineEdit_10">
                                   <property name="styleSheet">
                                    <string notr="true">background-color: rgb(33, 37, 43);</string>
+                                  </property>
+                                  <property name="text">
+                                   <string>9999</string>
                                   </property>
                                   <property name="placeholderText">
                                    <string>port</string>
@@ -3992,6 +3940,25 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                                </property>
                               </widget>
                              </item>
+                             <item alignment="Qt::AlignHCenter">
+                              <widget class="QPushButton" name="pushButton_44">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>200</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="layoutDirection">
+                                <enum>Qt::LeftToRight</enum>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(52, 59, 72);</string>
+                               </property>
+                               <property name="text">
+                                <string>send</string>
+                               </property>
+                              </widget>
+                             </item>
                             </layout>
                            </widget>
                           </item>
@@ -4012,6 +3979,225 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                      </widget>
                      <widget class="QWidget" name="SSL_page">
                       <layout class="QVBoxLayout" name="verticalLayout_37">
+                       <item>
+                        <widget class="QWidget" name="horizontalWidget_13" native="true">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>100</height>
+                          </size>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_42">
+                          <item>
+                           <widget class="QWidget" name="verticalWidget_24" native="true">
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>800</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <layout class="QVBoxLayout" name="verticalLayout_76">
+                             <item>
+                              <widget class="QPlainTextEdit" name="plainTextEdit_67">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>400</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="placeholderText">
+                                <string>output</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPlainTextEdit" name="plainTextEdit_68">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>100</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="placeholderText">
+                                <string>input</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QWidget" name="verticalWidget_25" native="true">
+                            <property name="maximumSize">
+                             <size>
+                              <width>350</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <layout class="QVBoxLayout" name="verticalLayout_77">
+                             <item>
+                              <widget class="QPlainTextEdit" name="plainTextEdit_69">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>300</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="plainText">
+                                <string>SSL </string>
+                               </property>
+                               <property name="placeholderText">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QWidget" name="formWidget_13" native="true">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>50</height>
+                                </size>
+                               </property>
+                               <layout class="QHBoxLayout" name="horizontalLayout_43">
+                                <item>
+                                 <widget class="QLineEdit" name="lineEdit_21">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>230</width>
+                                    <height>0</height>
+                                   </size>
+                                  </property>
+                                  <property name="styleSheet">
+                                   <string notr="true">background-color: rgb(33, 37, 43);</string>
+                                  </property>
+                                  <property name="text">
+                                   <string>127.0.0.1</string>
+                                  </property>
+                                  <property name="placeholderText">
+                                   <string>ip</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLineEdit" name="lineEdit_22">
+                                  <property name="styleSheet">
+                                   <string notr="true">background-color: rgb(33, 37, 43);</string>
+                                  </property>
+                                  <property name="text">
+                                   <string>9999</string>
+                                  </property>
+                                  <property name="placeholderText">
+                                   <string>port</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QWidget" name="formWidget_14" native="true">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <layout class="QHBoxLayout" name="horizontalLayout_44">
+                                <item>
+                                 <widget class="QPushButton" name="pushButton_47">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>0</width>
+                                    <height>20</height>
+                                   </size>
+                                  </property>
+                                  <property name="styleSheet">
+                                   <string notr="true">background-color: rgb(52, 59, 72);</string>
+                                  </property>
+                                  <property name="text">
+                                   <string>connect</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="pushButton_48">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>0</width>
+                                    <height>20</height>
+                                   </size>
+                                  </property>
+                                  <property name="styleSheet">
+                                   <string notr="true">background-color: rgb(52, 59, 72);</string>
+                                  </property>
+                                  <property name="text">
+                                   <string>listen</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </widget>
+                             </item>
+                             <item alignment="Qt::AlignHCenter">
+                              <widget class="QPushButton" name="pushButton_49">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>200</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="layoutDirection">
+                                <enum>Qt::LeftToRight</enum>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(52, 59, 72);</string>
+                               </property>
+                               <property name="text">
+                                <string>refuse / stop connect</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item alignment="Qt::AlignHCenter">
+                              <widget class="QPushButton" name="pushButton_50">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>200</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="layoutDirection">
+                                <enum>Qt::LeftToRight</enum>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(52, 59, 72);</string>
+                               </property>
+                               <property name="text">
+                                <string>send</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
                        <item>
                         <widget class="QLabel" name="label_7">
                          <property name="text">
@@ -4363,8 +4549,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>DES_decrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>744</x>
-     <y>614</y>
+     <x>697</x>
+     <y>599</y>
     </hint>
     <hint type="destinationlabel">
      <x>747</x>
@@ -4379,8 +4565,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>DES_encrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>744</x>
-     <y>512</y>
+     <x>697</x>
+     <y>502</y>
     </hint>
     <hint type="destinationlabel">
      <x>644</x>
@@ -4395,8 +4581,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>Affine_encrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>777</x>
-     <y>593</y>
+     <x>706</x>
+     <y>575</y>
     </hint>
     <hint type="destinationlabel">
      <x>501</x>
@@ -4411,8 +4597,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>Affine_decrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>777</x>
-     <y>651</y>
+     <x>706</x>
+     <y>631</y>
     </hint>
     <hint type="destinationlabel">
      <x>599</x>
@@ -4427,8 +4613,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>RC4_encrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>672</x>
-     <y>604</y>
+     <x>706</x>
+     <y>612</y>
     </hint>
     <hint type="destinationlabel">
      <x>568</x>
@@ -4443,8 +4629,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>RC4_decrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>696</x>
-     <y>653</y>
+     <x>706</x>
+     <y>654</y>
     </hint>
     <hint type="destinationlabel">
      <x>718</x>
@@ -4459,8 +4645,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>RC4_encrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>663</x>
-     <y>615</y>
+     <x>706</x>
+     <y>612</y>
     </hint>
     <hint type="destinationlabel">
      <x>509</x>
@@ -4475,8 +4661,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>RC4_decrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>716</x>
-     <y>664</y>
+     <x>706</x>
+     <y>654</y>
     </hint>
     <hint type="destinationlabel">
      <x>713</x>
@@ -4491,8 +4677,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>RSA_gen_key()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>654</x>
-     <y>396</y>
+     <x>696</x>
+     <y>386</y>
     </hint>
     <hint type="destinationlabel">
      <x>596</x>
@@ -4507,8 +4693,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>RSA_pubkey_encrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>709</x>
-     <y>448</y>
+     <x>696</x>
+     <y>438</y>
     </hint>
     <hint type="destinationlabel">
      <x>696</x>
@@ -4523,8 +4709,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>RSA_pubkey_decrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>652</x>
-     <y>493</y>
+     <x>696</x>
+     <y>490</y>
     </hint>
     <hint type="destinationlabel">
      <x>385</x>
@@ -4539,8 +4725,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>RSA_privkey_encrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>709</x>
-     <y>543</y>
+     <x>696</x>
+     <y>542</y>
     </hint>
     <hint type="destinationlabel">
      <x>817</x>
@@ -4555,12 +4741,140 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>RSA_pubkey_decrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>643</x>
-     <y>591</y>
+     <x>696</x>
+     <y>594</y>
     </hint>
     <hint type="destinationlabel">
      <x>212</x>
      <y>4</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_13</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>DH_connect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>937</x>
+     <y>554</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>787</x>
+     <y>756</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_14</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>DH_listen()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1097</x>
+     <y>554</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>966</x>
+     <y>757</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_12</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>DH_disconnect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1040</x>
+     <y>602</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1046</x>
+     <y>758</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_44</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>DH_send()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1040</x>
+     <y>649</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>864</x>
+     <y>758</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_47</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SSL_connect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>841</x>
+     <y>542</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>592</x>
+     <y>758</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_48</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SSL_listen()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1011</x>
+     <y>542</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1037</x>
+     <y>-8</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_49</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SSL_disconnect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>957</x>
+     <y>592</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>478</x>
+     <y>758</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_50</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>SSL_send()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>882</x>
+     <y>641</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>762</y>
     </hint>
    </hints>
   </connection>
@@ -4579,5 +4893,13 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
   <slot>RSA_pubkey_decrypt()</slot>
   <slot>RSA_privkey_encrypt()</slot>
   <slot>RSA_privkey_decrypt()</slot>
+  <slot>DH_connect()</slot>
+  <slot>DH_disconnect()</slot>
+  <slot>DH_send()</slot>
+  <slot>DH_listen()</slot>
+  <slot>SSL_connect()</slot>
+  <slot>SSL_disconnect()</slot>
+  <slot>SSL_send()</slot>
+  <slot>SSL_listen()</slot>
  </slots>
 </ui>

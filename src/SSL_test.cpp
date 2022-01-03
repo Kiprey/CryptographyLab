@@ -21,13 +21,13 @@
     } while(0)
 
 // 默认 CA 证书存放位置
-#define DEFAULT_CA_CER_PATH         "../crt/ca.crt"
+#define DEFAULT_CA_CER_PATH         "../../crt/ca.crt"
 // 默认 Server 公钥证书和私钥存放位置
-#define DEFAULT_SERVER_CER_PATH     "../crt/server.crt"
-#define DEFAULT_SERVER_KEY_PATH     "../crt/server.key"
+#define DEFAULT_SERVER_CER_PATH     "../../crt/server.crt"
+#define DEFAULT_SERVER_KEY_PATH     "../../crt/server.key"
 // 默认 Client 公钥证书和私钥存放位置
-#define DEFAULT_CLIENT_CER_PATH     "../crt/client.crt"
-#define DEFAULT_CLIENT_KEY_PATH     "../crt/client.key"
+#define DEFAULT_CLIENT_CER_PATH     "../../crt/client.crt"
+#define DEFAULT_CLIENT_KEY_PATH     "../../crt/client.key"
 
 static void loadcheck_cer(SSL_CTX* ctx, const string& ca_crt_path, const string& crt_path, const string& key_path) {
     // 验证对端的公钥证书

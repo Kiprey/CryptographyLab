@@ -14,7 +14,6 @@
 #
 # ///////////////////////////////////////////////////////////////
 
-from posixpath import expanduser
 import sys
 import os
 import platform
@@ -22,7 +21,6 @@ from ctypes import *
 import binascii
 import socket
 import threading
-from pwn import *
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
@@ -38,35 +36,10 @@ widgets = None
 # global so
 # ///////////////////////////////////////////////////////////////
 crypt_library = cdll.LoadLibrary("../../build/libcryptolab.so")
-sub_process = None
+new_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 recv_thread = None
-output = None
-
-class RecvWorkerThread(QThread):
-    signal = Signal(bytes) # 括号里填写信号传递的参数
-    def __init__(self):
-        super().__init__()
-
-    def __del__(self):
-        self.wait()
-
-    def run(self):
-        # 进行任务操作
-        global recv_thread, sub_process
-        while True:
-            try:
-                output = sub_process.recvline()
-            except EOFError:
-                print("EOF in recv_msg_worker")
-                break
-            if len(output):
-                print(output.decode())
-                self.signal.emit(output) # 发射信号
-                #widgets.plainTextEdit_16.appendPlainText(line.decode())
-
-        recv_thread = None
-        # widgets.plainTextEdit_19.setEnabled(True)
-
+thread_exit_flag = False
+DH_class = None
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -117,6 +90,8 @@ class MainWindow(QMainWindow):
         widgets.btn_feiduichen.clicked.connect(self.buttonClick)
         widgets.btn_DH.clicked.connect(self.buttonClick)
         widgets.btn_SSL.clicked.connect(self.buttonClick)
+        widgets.btn_save.clicked.connect(self.buttonClick)
+        widgets.btn_exit.clicked.connect(self.buttonClick)
 
         # EXTRA LEFT BOX
         def openCloseLeftBox():
@@ -228,6 +203,9 @@ class MainWindow(QMainWindow):
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(
                 btn.styleSheet()))  # SELECT MENU
+
+        if btnName == "btn_save":
+            AppFunctions.test(self.ui)
 
         # PRINT BTN NAME
         print(f'Button "{btnName}" pressed!')
@@ -400,111 +378,118 @@ class MainWindow(QMainWindow):
         widgets.plainTextEdit_7.setPlainText(bytes.decode(mingwen))
 
     def DH_connect(self):
-        global recv_thread, sub_process
+        global new_socket, recv_thread, DH_class
         if recv_thread:
             widgets.plainTextEdit_16.appendPlainText("不允许重复的连接/监听")
             return
         ip = widgets.lineEdit_9.text()
         port = int(widgets.lineEdit_10.text())
-        sub_process = process(argv=["../../build/DH_test", ip, str(port)])
-        recv_thread = RecvWorkerThread()
-        recv_thread.signal.connect(self.callback)
+        widgets.plainTextEdit_16.appendPlainText("尝试连接服务器......")
+        try:
+            new_socket.connect((ip,port))      # 连接服务器
+            # Auth_DH_new
+            crypt_library.Auth_DH_new.argtypes=[c_int]
+            crypt_library.Auth_DH_new.restype=c_void_p
+            DH_class=crypt_library.Auth_DH_new(new_socket.fileno())
+            print("connect DH_class: " + hex(DH_class))
+            widgets.plainTextEdit_16.appendPlainText("连接成功")
+            # Auth_DH_client_exch_key
+            crypt_library.Auth_DH_client_exch_key.argtypes=[c_void_p]
+            crypt_library.Auth_DH_client_exch_key.restype=c_bool
+            if(crypt_library.Auth_DH_client_exch_key(DH_class)):
+                widgets.plainTextEdit_16.appendPlainText("协商成功")
+            else:
+                widgets.plainTextEdit_16.appendPlainText("协商失败")
+                new_socket.close()
+                return
+
+        except ConnectionRefusedError:
+            widgets.plainTextEdit_16.appendPlainText("连接失败")
+            return
+
+        recv_thread = threading.Thread(target=self.recv_msg_worker, args=(None,))
         recv_thread.start()
-        #recv_thread = threading.Thread(target=self.recv_msg_worker)
-        #recv_thread.start()
 
 
     def DH_listen(self):
-        global recv_thread, sub_process
+        global recv_thread
         if recv_thread:
             widgets.plainTextEdit_16.appendPlainText("不允许重复的连接/监听")
             return
+        listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        ip = '0.0.0.0' # widgets.lineEdit_9.text()
         port = int(widgets.lineEdit_10.text())
-        sub_process = process(argv=["../../build/DH_test", str(port)])
-        widgets.plainTextEdit_19.setEnabled(False)
-        recv_thread = RecvWorkerThread()
-        recv_thread.signal.connect(self.callback)
+        listen_socket.bind((ip,port))
+        listen_socket.listen(5)
+        recv_thread = threading.Thread(target=self.recv_msg_worker, args=(listen_socket,))
         recv_thread.start()
-        #recv_thread = threading.Thread(target=self.recv_msg_worker)
-        #recv_thread.start()
 
-    def callback(self,output):
-        widgets.plainTextEdit_16.appendPlainText(output.decode())
-
-    # def recv_msg_worker(self):
-    #     global recv_thread, sub_process,output
-    #     while True:
-    #         try:
-    #             output = sub_process.recvline()
-    #         except EOFError:
-    #             print("EOF in recv_msg_worker")
-    #             break
-    #         if len(output):
-    #             print(output.decode())
-    #             #widgets.plainTextEdit_16.appendPlainText(line.decode())
-
-    #     recv_thread = None
-        # widgets.plainTextEdit_19.setEnabled(True)
-
+    def recv_msg_worker(self, listen_socket):
+        global new_socket, thread_exit_flag, recv_thread, DH_class
+        thread_exit_flag = False
+        if listen_socket:
+            widgets.plainTextEdit_16.appendPlainText('启动socket服务，等待客户端连接...')
+            new_socket, _ = listen_socket.accept()     # 等待连接，此处自动阻塞
+            # Auth_DH_new
+            crypt_library.Auth_DH_new.argtypes=[c_int]
+            crypt_library.Auth_DH_new.restype=c_void_p
+            DH_class=crypt_library.Auth_DH_new(new_socket.fileno())
+            print("listen DH_class: " + hex(DH_class))
+            listen_socket.close()
+            widgets.plainTextEdit_16.appendPlainText("客户端连接成功！")
+            # Auth_DH_server_exch_key
+            crypt_library.Auth_DH_server_exch_key.argtypes=[c_void_p]
+            crypt_library.Auth_DH_server_exch_key.restype=c_bool
+            if crypt_library.Auth_DH_server_exch_key(DH_class):
+                widgets.plainTextEdit_16.appendPlainText("协商成功")
+            else:
+                widgets.plainTextEdit_16.appendPlainText("协商失败")
+                new_socket.close()
+                return
+            
+        while thread_exit_flag != True: 
+            try:
+                # client_data = new_socket.recv(1024).decode()      # 接收信息
+                # replace to Auth_DH_recv
+                crypt_library.Auth_DH_recv.argtypes=[c_void_p]
+                crypt_library.Auth_DH_recv.restype=c_char_p
+                dh_msg_bytes = crypt_library.Auth_DH_recv(DH_class) 
+                if dh_msg_bytes is None:
+                    raise BrokenPipeError("Remote connection shutdown")
+                widgets.plainTextEdit_16.appendPlainText("来自远程的信息：%s" % dh_msg_bytes.decode())
+            except BrokenPipeError:
+                widgets.plainTextEdit_16.appendPlainText("连接已断开")
+                # Auth_DH_free
+                break
+        recv_thread = None
+        exit()
 
     def DH_disconnect(self):
-        global recv_thread, sub_process
-        if recv_thread: 
-            sub_process.kill()
-            recv_thread.terminate()
-            recv_thread = None
+        global new_socket, recv_thread, thread_exit_flag
+        if recv_thread:
+            thread_exit_flag = True
+            new_socket.close()       # 关闭连接
+            #recv_thread.join()
+            new_socket = None
+            widgets.plainTextEdit_16.appendPlainText("连接已断开")
+            # Auth_DH_free
+        else:
+            widgets.plainTextEdit_16.appendPlainText("当前不存在连接")
 
     def DH_send(self):
-        global recv_thread, sub_process
-        if recv_thread: 
-            msg = widgets.plainTextEdit_19.toPlainText()
-            sub_process.sendline(msg.encode())
-
-    def SSL_connect(self):
-        global recv_thread, sub_process
-        if recv_thread:
-            widgets.plainTextEdit_67.appendPlainText("不允许重复的连接/监听")
-            return
-        ip = widgets.lineEdit_21.text()
-        port = int(widgets.lineEdit_22.text())
-        sub_process = process(argv=["../../build/SSL_test", ip, str(port)])
-        recv_thread = RecvWorkerThread()
-        recv_thread.signal.connect(self.callback2)
-        recv_thread.start()
-        #recv_thread = threading.Thread(target=self.recv_msg_worker)
-        #recv_thread.start()
-
-
-    def SSL_listen(self):
-        global recv_thread, sub_process
-        if recv_thread:
-            widgets.plainTextEdit_67.appendPlainText("不允许重复的连接/监听")
-            return
-        port = int(widgets.lineEdit_22.text())
-        sub_process = process(argv=["../../build/SSL_test", str(port)])
-        # widgets.plainTextEdit_68.setEnabled(False)
-        recv_thread = RecvWorkerThread()
-        recv_thread.signal.connect(self.callback2)
-        recv_thread.start()
-        #recv_thread = threading.Thread(target=self.recv_msg_worker)
-        #recv_thread.start()
-
-    def callback2(self,output):
-        widgets.plainTextEdit_67.appendPlainText(output.decode())
-
-
-    def SSL_disconnect(self):
-        global recv_thread, sub_process
-        if recv_thread: 
-            sub_process.kill()
-            recv_thread.terminate()
-            recv_thread = None
-
-    def SSL_send(self):
-        global recv_thread, sub_process
-        if recv_thread: 
-            msg = widgets.plainTextEdit_68.toPlainText()
-            sub_process.sendline(msg.encode())
+        global new_socket, DH_class
+        input = widgets.plainTextEdit_19.toPlainText()
+        try:
+            # new_socket.sendall(input.encode())
+            # replace to Auth_DH_send
+            crypt_library.Auth_DH_send.argtypes=[c_void_p,c_char_p]
+            crypt_library.Auth_DH_send.restype=c_bool
+            if(crypt_library.Auth_DH_send(DH_class ,input.encode())):
+                widgets.plainTextEdit_16.appendPlainText("信息已发送：" + input)
+            else:
+                widgets.plainTextEdit_16.appendPlainText("信息发送失败")
+        except BrokenPipeError:
+            self.DH_disconnect()
     
 if __name__ == "__main__":
     app = QApplication(sys.argv)    
@@ -512,3 +497,7 @@ if __name__ == "__main__":
     window = MainWindow()
     sys.exit(app.exec())
 
+'''
+无法正常关闭某个链接的原因：
+    1. 父线程中设置了 exit flag，但是子线程无法获取到这个新设置的 exit flag ，因此子线程无法退出，以至于父线程在挂起等待
+'''

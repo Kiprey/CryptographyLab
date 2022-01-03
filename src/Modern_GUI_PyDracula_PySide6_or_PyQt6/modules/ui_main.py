@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'maineHCSDD.ui'
+## Form generated from reading UI file 'mainrXVjYR.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1296, 795)
+        MainWindow.resize(1155, 763)
         MainWindow.setMinimumSize(QSize(940, 560))
         self.styleSheet = QWidget(MainWindow)
         self.styleSheet.setObjectName(u"styleSheet")
@@ -766,30 +766,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.btn_SSL)
 
-        self.btn_save = QPushButton(self.topMenu)
-        self.btn_save.setObjectName(u"btn_save")
-        sizePolicy.setHeightForWidth(self.btn_save.sizePolicy().hasHeightForWidth())
-        self.btn_save.setSizePolicy(sizePolicy)
-        self.btn_save.setMinimumSize(QSize(0, 45))
-        self.btn_save.setFont(font)
-        self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_save.setLayoutDirection(Qt.LeftToRight)
-        self.btn_save.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-save.png)")
-
-        self.verticalLayout_8.addWidget(self.btn_save)
-
-        self.btn_exit = QPushButton(self.topMenu)
-        self.btn_exit.setObjectName(u"btn_exit")
-        sizePolicy.setHeightForWidth(self.btn_exit.sizePolicy().hasHeightForWidth())
-        self.btn_exit.setSizePolicy(sizePolicy)
-        self.btn_exit.setMinimumSize(QSize(0, 45))
-        self.btn_exit.setFont(font)
-        self.btn_exit.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_exit.setLayoutDirection(Qt.LeftToRight)
-        self.btn_exit.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-x.png);")
-
-        self.verticalLayout_8.addWidget(self.btn_exit)
-
 
         self.verticalMenuLayout.addWidget(self.topMenu, 0, Qt.AlignTop)
 
@@ -1256,7 +1232,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 353, 218))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 283, 218))
         self.scrollAreaWidgetContents.setStyleSheet(u" QScrollBar:vertical {\n"
 "	border: none;\n"
 "    background: rgb(52, 59, 72);\n"
@@ -2013,6 +1989,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_40.addWidget(self.pushButton_12, 0, Qt.AlignHCenter)
 
+        self.pushButton_44 = QPushButton(self.verticalWidget12)
+        self.pushButton_44.setObjectName(u"pushButton_44")
+        self.pushButton_44.setMinimumSize(QSize(200, 0))
+        self.pushButton_44.setLayoutDirection(Qt.LeftToRight)
+        self.pushButton_44.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+
+        self.verticalLayout_40.addWidget(self.pushButton_44, 0, Qt.AlignHCenter)
+
 
         self.horizontalLayout_10.addWidget(self.verticalWidget12)
 
@@ -2030,6 +2014,111 @@ class Ui_MainWindow(object):
         self.SSL_page.setObjectName(u"SSL_page")
         self.verticalLayout_37 = QVBoxLayout(self.SSL_page)
         self.verticalLayout_37.setObjectName(u"verticalLayout_37")
+        self.horizontalWidget_13 = QWidget(self.SSL_page)
+        self.horizontalWidget_13.setObjectName(u"horizontalWidget_13")
+        self.horizontalWidget_13.setMinimumSize(QSize(0, 100))
+        self.horizontalLayout_42 = QHBoxLayout(self.horizontalWidget_13)
+        self.horizontalLayout_42.setObjectName(u"horizontalLayout_42")
+        self.verticalWidget_24 = QWidget(self.horizontalWidget_13)
+        self.verticalWidget_24.setObjectName(u"verticalWidget_24")
+        self.verticalWidget_24.setMinimumSize(QSize(0, 0))
+        self.verticalWidget_24.setMaximumSize(QSize(800, 16777215))
+        self.verticalLayout_76 = QVBoxLayout(self.verticalWidget_24)
+        self.verticalLayout_76.setObjectName(u"verticalLayout_76")
+        self.plainTextEdit_67 = QPlainTextEdit(self.verticalWidget_24)
+        self.plainTextEdit_67.setObjectName(u"plainTextEdit_67")
+        self.plainTextEdit_67.setMaximumSize(QSize(16777215, 400))
+        self.plainTextEdit_67.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.verticalLayout_76.addWidget(self.plainTextEdit_67)
+
+        self.plainTextEdit_68 = QPlainTextEdit(self.verticalWidget_24)
+        self.plainTextEdit_68.setObjectName(u"plainTextEdit_68")
+        self.plainTextEdit_68.setMaximumSize(QSize(16777215, 100))
+        self.plainTextEdit_68.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.verticalLayout_76.addWidget(self.plainTextEdit_68)
+
+
+        self.horizontalLayout_42.addWidget(self.verticalWidget_24)
+
+        self.verticalWidget_25 = QWidget(self.horizontalWidget_13)
+        self.verticalWidget_25.setObjectName(u"verticalWidget_25")
+        self.verticalWidget_25.setMaximumSize(QSize(350, 16777215))
+        self.verticalLayout_77 = QVBoxLayout(self.verticalWidget_25)
+        self.verticalLayout_77.setObjectName(u"verticalLayout_77")
+        self.plainTextEdit_69 = QPlainTextEdit(self.verticalWidget_25)
+        self.plainTextEdit_69.setObjectName(u"plainTextEdit_69")
+        self.plainTextEdit_69.setMaximumSize(QSize(16777215, 300))
+        self.plainTextEdit_69.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.verticalLayout_77.addWidget(self.plainTextEdit_69)
+
+        self.formWidget_13 = QWidget(self.verticalWidget_25)
+        self.formWidget_13.setObjectName(u"formWidget_13")
+        self.formWidget_13.setMaximumSize(QSize(16777215, 50))
+        self.horizontalLayout_43 = QHBoxLayout(self.formWidget_13)
+        self.horizontalLayout_43.setObjectName(u"horizontalLayout_43")
+        self.lineEdit_21 = QLineEdit(self.formWidget_13)
+        self.lineEdit_21.setObjectName(u"lineEdit_21")
+        self.lineEdit_21.setMinimumSize(QSize(230, 0))
+        self.lineEdit_21.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.horizontalLayout_43.addWidget(self.lineEdit_21)
+
+        self.lineEdit_22 = QLineEdit(self.formWidget_13)
+        self.lineEdit_22.setObjectName(u"lineEdit_22")
+        self.lineEdit_22.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.horizontalLayout_43.addWidget(self.lineEdit_22)
+
+
+        self.verticalLayout_77.addWidget(self.formWidget_13)
+
+        self.formWidget_14 = QWidget(self.verticalWidget_25)
+        self.formWidget_14.setObjectName(u"formWidget_14")
+        self.formWidget_14.setMaximumSize(QSize(16777215, 30))
+        self.horizontalLayout_44 = QHBoxLayout(self.formWidget_14)
+        self.horizontalLayout_44.setObjectName(u"horizontalLayout_44")
+        self.pushButton_47 = QPushButton(self.formWidget_14)
+        self.pushButton_47.setObjectName(u"pushButton_47")
+        self.pushButton_47.setMinimumSize(QSize(0, 20))
+        self.pushButton_47.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+
+        self.horizontalLayout_44.addWidget(self.pushButton_47)
+
+        self.pushButton_48 = QPushButton(self.formWidget_14)
+        self.pushButton_48.setObjectName(u"pushButton_48")
+        self.pushButton_48.setMinimumSize(QSize(0, 20))
+        self.pushButton_48.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+
+        self.horizontalLayout_44.addWidget(self.pushButton_48)
+
+
+        self.verticalLayout_77.addWidget(self.formWidget_14)
+
+        self.pushButton_49 = QPushButton(self.verticalWidget_25)
+        self.pushButton_49.setObjectName(u"pushButton_49")
+        self.pushButton_49.setMinimumSize(QSize(200, 0))
+        self.pushButton_49.setLayoutDirection(Qt.LeftToRight)
+        self.pushButton_49.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+
+        self.verticalLayout_77.addWidget(self.pushButton_49, 0, Qt.AlignHCenter)
+
+        self.pushButton_50 = QPushButton(self.verticalWidget_25)
+        self.pushButton_50.setObjectName(u"pushButton_50")
+        self.pushButton_50.setMinimumSize(QSize(200, 0))
+        self.pushButton_50.setLayoutDirection(Qt.LeftToRight)
+        self.pushButton_50.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+
+        self.verticalLayout_77.addWidget(self.pushButton_50, 0, Qt.AlignHCenter)
+
+
+        self.horizontalLayout_42.addWidget(self.verticalWidget_25)
+
+
+        self.verticalLayout_37.addWidget(self.horizontalWidget_13)
+
         self.label_7 = QLabel(self.SSL_page)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setAlignment(Qt.AlignCenter)
@@ -2182,15 +2271,23 @@ class Ui_MainWindow(object):
         self.pushButton_9.clicked.connect(MainWindow.Affine_decrypt)
         self.pushButton_7.clicked.connect(MainWindow.RC4_encrypt)
         self.pushButton_6.clicked.connect(MainWindow.RC4_decrypt)
-        self.pushButton_10.clicked.connect(MainWindow.LSFR_encrypt)
-        self.pushButton_11.clicked.connect(MainWindow.LSFR_decrypt)
+        self.pushButton_10.clicked.connect(MainWindow.RC4_encrypt)
+        self.pushButton_11.clicked.connect(MainWindow.RC4_decrypt)
         self.pushButton_25.clicked.connect(MainWindow.RSA_gen_key)
         self.pushButton_5.clicked.connect(MainWindow.RSA_pubkey_encrypt)
         self.pushButton_15.clicked.connect(MainWindow.RSA_pubkey_decrypt)
         self.pushButton_16.clicked.connect(MainWindow.RSA_privkey_encrypt)
-        self.pushButton_4.clicked.connect(MainWindow.RSA_privkey_decrypt)
+        self.pushButton_4.clicked.connect(MainWindow.RSA_pubkey_decrypt)
+        self.pushButton_13.clicked.connect(MainWindow.DH_connect)
+        self.pushButton_14.clicked.connect(MainWindow.DH_listen)
+        self.pushButton_12.clicked.connect(MainWindow.DH_disconnect)
+        self.pushButton_44.clicked.connect(MainWindow.DH_send)
+        self.pushButton_47.clicked.connect(MainWindow.SSL_connect)
+        self.pushButton_48.clicked.connect(MainWindow.SSL_listen)
+        self.pushButton_49.clicked.connect(MainWindow.SSL_disconnect)
+        self.pushButton_50.clicked.connect(MainWindow.SSL_send)
 
-        self.stackedWidget.setCurrentIndex(7)
+        self.stackedWidget.setCurrentIndex(8)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -2210,8 +2307,6 @@ class Ui_MainWindow(object):
         self.btn_feiduichen.setText(QCoreApplication.translate("MainWindow", u"RSA\u975e\u5bf9\u79f0\u52a0\u5bc6", None))
         self.btn_DH.setText(QCoreApplication.translate("MainWindow", u"DH\u8ba4\u8bc1\u534f\u8bae\u4ee5\u53ca\u589e\u5f3a", None))
         self.btn_SSL.setText(QCoreApplication.translate("MainWindow", u"SSL\u6f14\u793a", None))
-        self.btn_save.setText(QCoreApplication.translate("MainWindow", u"Save", None))
-        self.btn_exit.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.toggleLeftBox.setText(QCoreApplication.translate("MainWindow", u"Left Box", None))
         self.extraLabel.setText(QCoreApplication.translate("MainWindow", u"Left Box", None))
 #if QT_CONFIG(tooltip)
@@ -2334,21 +2429,22 @@ class Ui_MainWindow(object):
         self.pushButton_9.setText(QCoreApplication.translate("MainWindow", u"\u89e3  \u5bc6", None))
         self.plainTextEdit_14.setPlaceholderText(QCoreApplication.translate("MainWindow", u"result", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"fangshe", None))
-        self.plainTextEdit_10.setPlainText(QCoreApplication.translate("MainWindow", u"RC4", None))
+        self.plainTextEdit_10.setPlainText(QCoreApplication.translate("MainWindow", u"RC4 \uf075 \u79cd\u5b50\u5bc6\u94a5\u53ef\u914d\u7f6e", None))
         self.plainTextEdit_12.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u8f93\u5165\u5f85\u52a0\u89e3\u5bc6\u5185\u5bb9", None))
         self.plainTextEdit_18.setPlaceholderText(QCoreApplication.translate("MainWindow", u"key", None))
         self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"RC4 \u52a0  \u5bc6", None))
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"RC4 \u89e3  \u5bc6", None))
         self.plainTextEdit_11.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u7ed3\u679c", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"RC4", None))
-        self.plainTextEdit_17.setPlaceholderText(QCoreApplication.translate("MainWindow", u"LSFR encryption", None))
+        self.plainTextEdit_17.setPlainText(QCoreApplication.translate("MainWindow", u"LSFR encryption \uf075	\u79cd\u5b50\u5bc6\u94a5\u53ef\u914d\u7f6e", None))
+        self.plainTextEdit_17.setPlaceholderText("")
         self.plainTextEdit_22.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u8f93\u5165\u5f85\u52a0\u89e3\u5bc6\u5185\u5bb9", None))
         self.plainTextEdit_23.setPlaceholderText(QCoreApplication.translate("MainWindow", u"key", None))
         self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"LSFR \u52a0  \u5bc6", None))
         self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"LSFR \u89e3  \u5bc6", None))
         self.plainTextEdit_21.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u7ed3\u679c", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"LSFR", None))
-        self.plainTextEdit_2.setPlainText(QCoreApplication.translate("MainWindow", u"     DES\u52a0\u5bc6/\u89e3\u5bc6\n"
+        self.plainTextEdit_2.setPlainText(QCoreApplication.translate("MainWindow", u"     DES\u52a0\u5bc6/\u89e3\u5bc6 \uf075\u52a0\u5bc6\u5bc6\u94a5\u53ef\u914d\u7f6e\n"
 "\n"
 "    3DES\uff08Triple Des\uff09\u52a0\u5bc6\u89e3\u5bc6\u5728\u7ebf\u5de5\u5177\u3002\u652f\u63013DES\u53cc\u500d\u548c\u4e09\u500d\u7684\u5bc6\u94a5\u3002\u5bc6\u94a5\u957f\u5ea6\u5206\u522b\u4e3a\u652f\u6301\u4e3a128/192\u4f4d\u3002\u53cc\u500d\u5bc6\u94a5\u53ef\u7528\u4e09\u500d\u5bc6\u94a5\u66ff\u6362\uff0c\u53cc\u500d\u5bc6\u94a5\u7684\u524d64\u4f4d+\u540e64\u4f4d+\u524d64\u4f4d\u7b49\u4e8e\u66ff\u4ee3\u7684\u4e09\u500d\u5bc6\u94a5\u3002\u5bc6\u94a5\u957f\u5ea6\u4e0d\u8db3\u65f6\uff0c\u5c06\u4ee50x00\u586b\u5145\u3002IV\u4e5f\u4e00\u6837\uff0c\u4ee5\u6b64\u65b9\u5f0f\u586b\u5145\u3002\u8d85\u51fa\u90e8\u5206\u5c06\u88ab\u5ffd\u7565\u3002\u5982\u679c\u6ca1\u6709\u7279\u522b\u6307\u660e\u5e73\u53f0\u5c06\u4f7f\u7528UTF8\u7f16\u7801\u5904\u7406\u6570\u636e\uff08\u5982KEY/IV\uff09\u3002\u672c\u5de5\u5177\u672a\u4f5c\u5168\u9762\u6d4b\u8bd5\uff0c\u5982\u679c\u53d1\u73b0\u95ee\u9898\u8bf7\u7ed9\u4e88\u53cd\u9988\u3002", None))
         self.plainTextEdit_4.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u9700\u8981\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u5185\u5bb9", None))
@@ -2364,23 +2460,45 @@ class Ui_MainWindow(object):
         self.plainTextEdit_27.setPlaceholderText(QCoreApplication.translate("MainWindow", u"n \u79c1\u94a5\u4e4b\u4e00", None))
         self.plainTextEdit_25.setPlaceholderText(QCoreApplication.translate("MainWindow", u"e \u516c\u94a5\u4e4b\u4e00", None))
         self.plainTextEdit_24.setPlaceholderText(QCoreApplication.translate("MainWindow", u"n \u516c\u94a5\u4e4b\u4e00", None))
-        self.plainTextEdit_6.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u9700\u8981\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u5185\u5bb9", None))
+        self.plainTextEdit_6.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u660e\u6587", None))
         self.pushButton_25.setText(QCoreApplication.translate("MainWindow", u"RSA \u5bc6\u94a5\u751f\u6210", None))
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"RSA \u516c\u94a5\u52a0\u5bc6", None))
         self.pushButton_15.setText(QCoreApplication.translate("MainWindow", u"RSA \u516c\u94a5\u89e3\u5bc6", None))
         self.pushButton_16.setText(QCoreApplication.translate("MainWindow", u"RSA \u79c1\u94a5\u52a0\u5bc6", None))
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"RSA \u79c1\u94a5\u89e3\u5bc6", None))
-        self.plainTextEdit_7.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u7ed3\u679c", None))
+        self.plainTextEdit_7.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u5bc6\u6587", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"RSA", None))
         self.plainTextEdit_16.setPlaceholderText(QCoreApplication.translate("MainWindow", u"output", None))
         self.plainTextEdit_19.setPlaceholderText(QCoreApplication.translate("MainWindow", u"input", None))
-        self.plainTextEdit_20.setPlaceholderText(QCoreApplication.translate("MainWindow", u"DH fsdfsdafs", None))
+        self.plainTextEdit_20.setPlainText(QCoreApplication.translate("MainWindow", u"\uf06eD-H\u8ba4\u8bc1\u534f\u8bae\u53ca\u589e\u5f3a\n"
+"\n"
+"\uf075\u6709\u4e24\u4e2a\u53c2\u4e0e\u5b9e\u4f53(C/S\u6a21\u5f0f)\uff0c\u5fc5\u987b\u6709\u7f51\u7edc\u901a\u4fe1\u90e8\u5206\n"
+"\n"
+"\uf075\u5b9e\u73b0\u6d88\u606f\u5b8c\u6574\u6027\u9a8c\u8bc1\u53ca\u6765\u6e90\u9a8c\u8bc1\u7684\u589e\u5f3a\u8bbe\u8ba1\n"
+"  \uf06c\u6563\u5217\u51fd\u6570SHA-1\u6216MD5\uff0c\u6570\u5b57\u7b7e\u540dRSA\n"
+"", None))
+        self.plainTextEdit_20.setPlaceholderText("")
+        self.lineEdit_9.setText(QCoreApplication.translate("MainWindow", u"127.0.0.1", None))
         self.lineEdit_9.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ip", None))
+        self.lineEdit_10.setText(QCoreApplication.translate("MainWindow", u"9999", None))
         self.lineEdit_10.setPlaceholderText(QCoreApplication.translate("MainWindow", u"port", None))
         self.pushButton_13.setText(QCoreApplication.translate("MainWindow", u"connect", None))
         self.pushButton_14.setText(QCoreApplication.translate("MainWindow", u"listen", None))
         self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"refuse / stop connect", None))
+        self.pushButton_44.setText(QCoreApplication.translate("MainWindow", u"send", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"DH", None))
+        self.plainTextEdit_67.setPlaceholderText(QCoreApplication.translate("MainWindow", u"output", None))
+        self.plainTextEdit_68.setPlaceholderText(QCoreApplication.translate("MainWindow", u"input", None))
+        self.plainTextEdit_69.setPlainText(QCoreApplication.translate("MainWindow", u"SSL ", None))
+        self.plainTextEdit_69.setPlaceholderText("")
+        self.lineEdit_21.setText(QCoreApplication.translate("MainWindow", u"127.0.0.1", None))
+        self.lineEdit_21.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ip", None))
+        self.lineEdit_22.setText(QCoreApplication.translate("MainWindow", u"9999", None))
+        self.lineEdit_22.setPlaceholderText(QCoreApplication.translate("MainWindow", u"port", None))
+        self.pushButton_47.setText(QCoreApplication.translate("MainWindow", u"connect", None))
+        self.pushButton_48.setText(QCoreApplication.translate("MainWindow", u"listen", None))
+        self.pushButton_49.setText(QCoreApplication.translate("MainWindow", u"refuse / stop connect", None))
+        self.pushButton_50.setText(QCoreApplication.translate("MainWindow", u"send", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"SSL", None))
         self.btn_message.setText(QCoreApplication.translate("MainWindow", u"Message", None))
         self.btn_print.setText(QCoreApplication.translate("MainWindow", u"Print", None))
