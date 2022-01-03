@@ -61,3 +61,5 @@ openssl verify -verbose -x509_strict -CAfile ca.crt client.crt
 ```
 
 之后，执行 SSL_test 并根据输出进行输入即可正常使用。
+
+## 环境
