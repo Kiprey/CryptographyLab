@@ -212,7 +212,7 @@ void generateKeys(string &k)
 	// 去掉奇偶标记位，将64位密钥变成56位
 	for (int i = 0; i < 56; ++i)
 		realKey[55 - i] = key[64 - PC_1[i]];
-	// 生成子密钥，保存在 subKeys[16] 中
+	// 生成子密钥，保存在 subKeys[16]中
 	for (int round = 0; round < 16; ++round)
 	{
 		// 前28位与后28位
@@ -322,7 +322,7 @@ string decryptOnce(string s)
 		right = left ^ f(right, g_sub_key[15 - round]);
 		left = new_left;
 	}
-	// 第四步：合并L32和R32，注意合并为 R32L32
+	// 第四步：合并L32和R32，注意合并为：R32L32
 	for (int i = 0; i < 32; ++i)
 		temp_plain[i] = left[i];
 	for (int i = 32; i < 64; ++i)
