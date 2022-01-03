@@ -71,6 +71,8 @@ python版本为3.9.2，依赖安装：
 pip install --user PySide6
 # pwn-tools开启线程
 pip install --user pwn-tools
+# 调用c++库
+pip install --user ctypes
 ````
 
 安装完成后在 `CryptographyLab/src/Modern_GUI_PyDracula_PySide6_or_PyQt6` 目录下运行 `main.py`
