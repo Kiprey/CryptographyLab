@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainrXVjYR.ui'
+## Form generated from reading UI file 'maineTwnRf.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -1232,7 +1232,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 283, 218))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 218, 218))
         self.scrollAreaWidgetContents.setStyleSheet(u" QScrollBar:vertical {\n"
 "	border: none;\n"
 "    background: rgb(52, 59, 72);\n"
@@ -2271,8 +2271,8 @@ class Ui_MainWindow(object):
         self.pushButton_9.clicked.connect(MainWindow.Affine_decrypt)
         self.pushButton_7.clicked.connect(MainWindow.RC4_encrypt)
         self.pushButton_6.clicked.connect(MainWindow.RC4_decrypt)
-        self.pushButton_10.clicked.connect(MainWindow.RC4_encrypt)
-        self.pushButton_11.clicked.connect(MainWindow.RC4_decrypt)
+        self.pushButton_10.clicked.connect(MainWindow.LSFR_encrypt)
+        self.pushButton_11.clicked.connect(MainWindow.LSFR_decrypt)
         self.pushButton_25.clicked.connect(MainWindow.RSA_gen_key)
         self.pushButton_5.clicked.connect(MainWindow.RSA_pubkey_encrypt)
         self.pushButton_15.clicked.connect(MainWindow.RSA_pubkey_decrypt)
@@ -2287,7 +2287,7 @@ class Ui_MainWindow(object):
         self.pushButton_49.clicked.connect(MainWindow.SSL_disconnect)
         self.pushButton_50.clicked.connect(MainWindow.SSL_send)
 
-        self.stackedWidget.setCurrentIndex(8)
+        self.stackedWidget.setCurrentIndex(4)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
