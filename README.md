@@ -70,7 +70,7 @@ python版本为3.9.2，依赖安装：
 # 项目Ui基于PySide6
 pip install --user PySide6
 # pwn-tools开启线程
-pip install --user pwn-tools
+pip install --user pwntools
 # 调用c++库
 pip install --user ctypes
 ````
