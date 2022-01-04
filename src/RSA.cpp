@@ -97,11 +97,11 @@ int CalculateD(unsigned int e, unsigned int model)
 key ProduceKey()
 {
     key k;
-    g_p = RandomlyGeneratePrime(3, 65536 / 128, 1);  
+    g_p = RandomlyGeneratePrime(3, 65536 / 128, 1);
     g_q = RandomlyGeneratePrime(3, 65536 / g_p, 1); //使k.n=g_p*g_q不超过2^16
     k.n = g_p * g_q;
     unsigned int t = (g_p - 1) * (g_q - 1);
-    k.e = RandomlyGeneratePrime(2, t, t);
+    k.e = RandomlyGeneratePrime(2, t, t); //产生2到t-1的一个素数，且与t互质
     k.d = CalculateD(k.e, t);
     return k;
 }
@@ -117,16 +117,16 @@ unsigned int PowerModule(int a, int b, int n)
     return result;
 }
 
-//RSA公钥加密,生成密文：5位一组的十进制数字
+// RSA公钥加密,生成密文：5位一组的十进制数字
 string publicEncrypt(string s, key k)
 {
     string result = "";
     int len = s.length();
     for (int i = 0; i < len; i++)
     {
-        int temp = PowerModule(s[i], k.e, k.n);
+        int temp = PowerModule(s[i], k.e, k.n); //字符串中的每个字符对应一个5位数字
         int dividend = 10000;
-        while (dividend)
+        while (dividend) //将5位数字转化为字符加入结果
         {
             result += (temp / dividend + '0');
             temp %= dividend;
@@ -136,17 +136,17 @@ string publicEncrypt(string s, key k)
     return result;
 }
 
-//RSA私钥解密,生成明文：字符串
+// RSA私钥解密,生成明文：字符串
 string privateDecrypt(string s, key k)
 {
     string result = "";
     int len = s.length();
     for (int i = 0; i < len; i += 5)
     {
-        string single = s.substr(i, 5);
+        string single = s.substr(i, 5); //5位数字对应一个字符
         unsigned int c = 0;
         int factor = 10000;
-        for (int j = 0; j < 5; j++)
+        for (int j = 0; j < 5; j++) //将5位数字的字符串转化位int型
         {
             c += factor * (single[j] - '0');
             factor /= 10;
@@ -157,16 +157,16 @@ string privateDecrypt(string s, key k)
     return result;
 }
 
-//RSA私钥加密,作签名，生成密文：5位一组的十进制数字
+// RSA私钥加密,作签名，生成密文：5位一组的十进制数字
 string privateEncrypt(string s, key k)
 {
     string result = "";
     int len = s.length();
     for (int i = 0; i < len; i++)
     {
-        int temp = PowerModule(s[i], k.d, k.n);
+        int temp = PowerModule(s[i], k.d, k.n); //字符串中的每个字符对应一个5位数字
         int dividend = 10000;
-        while (dividend)
+        while (dividend) //将5位数字转化为字符加入结果
         {
             result += (temp / dividend + '0');
             temp %= dividend;
@@ -176,19 +176,19 @@ string privateEncrypt(string s, key k)
     return result;
 }
 
-//RSA公钥解密,作验证，生成明文：字符串
+// RSA公钥解密,作验证，生成明文：字符串
 string publicDecrypt(string s, key k)
 {
     string result = "";
     int len = s.length();
     for (int i = 0; i < len; i += 5)
     {
-        string single = s.substr(i, 5);
+        string single = s.substr(i, 5); //5位数字对应一个字符
         unsigned int c = 0;
         int factor = 10000;
         for (int j = 0; j < 5; j++)
         {
-            c += factor * (single[j] - '0');
+            c += factor * (single[j] - '0'); //将5位数字的字符串转化位int型
             factor /= 10;
         }
         int temp = PowerModule(c, k.e, k.n);
