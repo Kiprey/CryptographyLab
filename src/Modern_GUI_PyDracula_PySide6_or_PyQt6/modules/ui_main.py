@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'maineTwnRf.ui'
+## Form generated from reading UI file 'mainopjPnV.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -1855,11 +1855,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_28.addWidget(self.pushButton_5)
 
-        self.pushButton_15 = QPushButton(self.verticalWidget10)
-        self.pushButton_15.setObjectName(u"pushButton_15")
-        self.pushButton_15.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+        self.pushButton_4 = QPushButton(self.verticalWidget10)
+        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.pushButton_4.setStyleSheet(u"background-color: rgb(52, 59, 72);")
 
-        self.verticalLayout_28.addWidget(self.pushButton_15)
+        self.verticalLayout_28.addWidget(self.pushButton_4)
 
         self.pushButton_16 = QPushButton(self.verticalWidget10)
         self.pushButton_16.setObjectName(u"pushButton_16")
@@ -1867,11 +1867,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_28.addWidget(self.pushButton_16)
 
-        self.pushButton_4 = QPushButton(self.verticalWidget10)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+        self.pushButton_15 = QPushButton(self.verticalWidget10)
+        self.pushButton_15.setObjectName(u"pushButton_15")
+        self.pushButton_15.setStyleSheet(u"background-color: rgb(52, 59, 72);")
 
-        self.verticalLayout_28.addWidget(self.pushButton_4)
+        self.verticalLayout_28.addWidget(self.pushButton_15)
 
 
         self.gridLayout_3.addWidget(self.verticalWidget10, 0, 1, 2, 1)
@@ -2277,7 +2277,7 @@ class Ui_MainWindow(object):
         self.pushButton_5.clicked.connect(MainWindow.RSA_pubkey_encrypt)
         self.pushButton_15.clicked.connect(MainWindow.RSA_pubkey_decrypt)
         self.pushButton_16.clicked.connect(MainWindow.RSA_privkey_encrypt)
-        self.pushButton_4.clicked.connect(MainWindow.RSA_pubkey_decrypt)
+        self.pushButton_4.clicked.connect(MainWindow.RSA_privkey_decrypt)
         self.pushButton_13.clicked.connect(MainWindow.DH_connect)
         self.pushButton_14.clicked.connect(MainWindow.DH_listen)
         self.pushButton_12.clicked.connect(MainWindow.DH_disconnect)
@@ -2287,7 +2287,7 @@ class Ui_MainWindow(object):
         self.pushButton_49.clicked.connect(MainWindow.SSL_disconnect)
         self.pushButton_50.clicked.connect(MainWindow.SSL_send)
 
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(5)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -2444,9 +2444,10 @@ class Ui_MainWindow(object):
         self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"LSFR \u89e3  \u5bc6", None))
         self.plainTextEdit_21.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u7ed3\u679c", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"LSFR", None))
-        self.plainTextEdit_2.setPlainText(QCoreApplication.translate("MainWindow", u"     DES\u52a0\u5bc6/\u89e3\u5bc6 \uf075\u52a0\u5bc6\u5bc6\u94a5\u53ef\u914d\u7f6e\n"
+        self.plainTextEdit_2.setPlainText(QCoreApplication.translate("MainWindow", u"DES\u52a0\u5bc6\u7b97\u6cd5\u662f\u4e00\u79cd\u5bf9\u79f0\u52a0\u5bc6\u7b97\u6cd5\u3002\u52a0\u5bc6\u5bc6\u94a5\u53ef\u914d\u7f6e\u3002\n"
 "\n"
-"    3DES\uff08Triple Des\uff09\u52a0\u5bc6\u89e3\u5bc6\u5728\u7ebf\u5de5\u5177\u3002\u652f\u63013DES\u53cc\u500d\u548c\u4e09\u500d\u7684\u5bc6\u94a5\u3002\u5bc6\u94a5\u957f\u5ea6\u5206\u522b\u4e3a\u652f\u6301\u4e3a128/192\u4f4d\u3002\u53cc\u500d\u5bc6\u94a5\u53ef\u7528\u4e09\u500d\u5bc6\u94a5\u66ff\u6362\uff0c\u53cc\u500d\u5bc6\u94a5\u7684\u524d64\u4f4d+\u540e64\u4f4d+\u524d64\u4f4d\u7b49\u4e8e\u66ff\u4ee3\u7684\u4e09\u500d\u5bc6\u94a5\u3002\u5bc6\u94a5\u957f\u5ea6\u4e0d\u8db3\u65f6\uff0c\u5c06\u4ee50x00\u586b\u5145\u3002IV\u4e5f\u4e00\u6837\uff0c\u4ee5\u6b64\u65b9\u5f0f\u586b\u5145\u3002\u8d85\u51fa\u90e8\u5206\u5c06\u88ab\u5ffd\u7565\u3002\u5982\u679c\u6ca1\u6709\u7279\u522b\u6307\u660e\u5e73\u53f0\u5c06\u4f7f\u7528UTF8\u7f16\u7801\u5904\u7406\u6570\u636e\uff08\u5982KEY/IV\uff09\u3002\u672c\u5de5\u5177\u672a\u4f5c\u5168\u9762\u6d4b\u8bd5\uff0c\u5982\u679c\u53d1\u73b0\u95ee\u9898\u8bf7\u7ed9\u4e88\u53cd\u9988\u3002", None))
+"\u660e\u6587\uff1a\u4efb\u610f\u957f\u5ea6\u7684\u5b57\u7b26\u4e32\u3002\n"
+"\u5bc6\u6587\uff1a\u753116\u8fdb\u5236\u6570\u5b57\u7ec4\u6210\u7684\u5b57\u7b26\u4e32\u3002", None))
         self.plainTextEdit_4.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u9700\u8981\u52a0\u5bc6\u6216\u8005\u89e3\u5bc6\u7684\u5185\u5bb9", None))
         self.lineEdit_2.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u8f93\u5165\u79d8\u94a5", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u52a0\u5bc6", None))
@@ -2455,7 +2456,10 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"DES", None))
         self.plainTextEdit_5.setPlainText(QCoreApplication.translate("MainWindow", u"RSA\u52a0\u5bc6\u7b97\u6cd5\u662f\u4e00\u79cd\u975e\u5bf9\u79f0\u52a0\u5bc6\u7b97\u6cd5\u3002\n"
 "\n"
-"\u52a0\u5bc6\u7684\u660e\u6587\u592a\u957f\u5219\u4f1a\u51fa\u9519\uff0c\u89e3\u51b3\u65b9\u6cd5\uff1a\u52a0\u5bc6\u7684\u65f6\u5019117\u4e2a\u5b57\u7b26\u52a0\u5bc6\u4e00\u6b21\uff0c\u7136\u540e\u628a\u6240\u6709\u7684\u5bc6\u6587\u62fc\u63a5\u6210\u4e00\u4e2a\u5bc6\u6587\uff1b\u89e3\u5bc6\u7684\u65f6\u5019\u9700\u8981128\u4e2a\u5b57\u7b26\u89e3\u5bc6\u4e00\u4e0b\uff0c\u7136\u540e\u62fc\u63a5\u6210\u6570\u636e\u3002", None))
+"\u660e\u6587\uff1a\u4efb\u610f\u957f\u5ea6\u7684\u5b57\u7b26\u4e32\u3002\n"
+"\u5bc6\u6587\uff1a\u75315\u4f4d\u4e00\u7ec4\u7684\u5341\u8fdb\u5236\u6570\u5b57\u7ec4\u6210\u7684\u5b57\u7b26\u4e32\u3002\n"
+"\u5bc6\u94a5\uff1a\u516c\u94a5(e,n)\uff0c\u79c1\u94a5(d,n)\u3002\u52a0\u5bc6\u524d\u70b9\u51fb\u201cRSA\u5bc6\u94a5\u751f\u6210\u201d\u8fdb\u884c\u751f\u6210\uff0c\u89e3\u5bc6\u65f6\u9700\u8981\u8f93\u5165\u3002\n"
+"         \u201c\u516c\u94a5\u52a0\u5bc6\u201d\u5bf9\u5e94\u201c\u79c1\u94a5\u89e3\u5bc6\u201d\uff0c\u201c\u79c1\u94a5\u52a0\u5bc6\u201d\u5bf9\u5e94\u201c\u516c\u94a5\u89e3\u5bc6\u201d\u3002", None))
         self.plainTextEdit_26.setPlaceholderText(QCoreApplication.translate("MainWindow", u"d \u79c1\u94a5\u4e4b\u4e00", None))
         self.plainTextEdit_27.setPlaceholderText(QCoreApplication.translate("MainWindow", u"n \u79c1\u94a5\u4e4b\u4e00", None))
         self.plainTextEdit_25.setPlaceholderText(QCoreApplication.translate("MainWindow", u"e \u516c\u94a5\u4e4b\u4e00", None))
@@ -2463,9 +2467,9 @@ class Ui_MainWindow(object):
         self.plainTextEdit_6.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u660e\u6587", None))
         self.pushButton_25.setText(QCoreApplication.translate("MainWindow", u"RSA \u5bc6\u94a5\u751f\u6210", None))
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"RSA \u516c\u94a5\u52a0\u5bc6", None))
-        self.pushButton_15.setText(QCoreApplication.translate("MainWindow", u"RSA \u516c\u94a5\u89e3\u5bc6", None))
-        self.pushButton_16.setText(QCoreApplication.translate("MainWindow", u"RSA \u79c1\u94a5\u52a0\u5bc6", None))
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"RSA \u79c1\u94a5\u89e3\u5bc6", None))
+        self.pushButton_16.setText(QCoreApplication.translate("MainWindow", u"RSA \u79c1\u94a5\u52a0\u5bc6", None))
+        self.pushButton_15.setText(QCoreApplication.translate("MainWindow", u"RSA \u516c\u94a5\u89e3\u5bc6", None))
         self.plainTextEdit_7.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u5bc6\u6587", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"RSA", None))
         self.plainTextEdit_16.setPlaceholderText(QCoreApplication.translate("MainWindow", u"output", None))

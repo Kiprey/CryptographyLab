@@ -1987,7 +1987,7 @@ p, li { white-space: pre-wrap; }
                       <number>-4</number>
                      </property>
                      <property name="currentIndex">
-                      <number>4</number>
+                      <number>5</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -3351,9 +3351,10 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                              <string notr="true">background-color: rgb(33, 37, 43);</string>
                             </property>
                             <property name="plainText">
-                             <string>     DES加密/解密 加密密钥可配置
+                             <string>DES加密算法是一种对称加密算法。加密密钥可配置。
 
-    3DES（Triple Des）加密解密在线工具。支持3DES双倍和三倍的密钥。密钥长度分别为支持为128/192位。双倍密钥可用三倍密钥替换，双倍密钥的前64位+后64位+前64位等于替代的三倍密钥。密钥长度不足时，将以0x00填充。IV也一样，以此方式填充。超出部分将被忽略。如果没有特别指明平台将使用UTF8编码处理数据（如KEY/IV）。本工具未作全面测试，如果发现问题请给予反馈。</string>
+明文：任意长度的字符串。
+密文：由16进制数字组成的字符串。</string>
                             </property>
                            </widget>
                           </item>
@@ -3501,7 +3502,10 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                             <property name="plainText">
                              <string>RSA加密算法是一种非对称加密算法。
 
-加密的明文太长则会出错，解决方法：加密的时候117个字符加密一次，然后把所有的密文拼接成一个密文；解密的时候需要128个字符解密一下，然后拼接成数据。</string>
+明文：任意长度的字符串。
+密文：由5位一组的十进制数字组成的字符串。
+密钥：公钥(e,n)，私钥(d,n)。加密前点击“RSA密钥生成”进行生成，解密时需要输入。
+         “公钥加密”对应“私钥解密”，“私钥加密”对应“公钥解密”。</string>
                             </property>
                            </widget>
                           </item>
@@ -3669,12 +3673,12 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                               </widget>
                              </item>
                              <item>
-                              <widget class="QPushButton" name="pushButton_15">
+                              <widget class="QPushButton" name="pushButton_4">
                                <property name="styleSheet">
                                 <string notr="true">background-color: rgb(52, 59, 72);</string>
                                </property>
                                <property name="text">
-                                <string>RSA 公钥解密</string>
+                                <string>RSA 私钥解密</string>
                                </property>
                               </widget>
                              </item>
@@ -3689,12 +3693,12 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
                               </widget>
                              </item>
                              <item>
-                              <widget class="QPushButton" name="pushButton_4">
+                              <widget class="QPushButton" name="pushButton_15">
                                <property name="styleSheet">
                                 <string notr="true">background-color: rgb(52, 59, 72);</string>
                                </property>
                                <property name="text">
-                                <string>RSA 私钥解密</string>
+                                <string>RSA 公钥解密</string>
                                </property>
                               </widget>
                              </item>
@@ -4549,8 +4553,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>DES_decrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>697</x>
-     <y>599</y>
+     <x>180</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>747</x>
@@ -4565,8 +4569,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>DES_encrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>697</x>
-     <y>502</y>
+     <x>180</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>644</x>
@@ -4645,8 +4649,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>LSFR_encrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>706</x>
-     <y>612</y>
+     <x>280</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>509</x>
@@ -4661,8 +4665,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>LSFR_decrypt()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>706</x>
-     <y>654</y>
+     <x>280</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>713</x>
@@ -4738,7 +4742,7 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <sender>pushButton_4</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>RSA_pubkey_decrypt()</slot>
+   <slot>RSA_privkey_decrypt()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>696</x>
@@ -4757,8 +4761,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>DH_connect()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>937</x>
-     <y>554</y>
+     <x>180</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>787</x>
@@ -4773,8 +4777,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>DH_listen()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1097</x>
-     <y>554</y>
+     <x>180</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>966</x>
@@ -4789,8 +4793,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>DH_disconnect()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1040</x>
-     <y>602</y>
+     <x>280</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>1046</x>
@@ -4805,8 +4809,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>DH_send()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1040</x>
-     <y>649</y>
+     <x>280</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>864</x>
@@ -4821,8 +4825,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>SSL_connect()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>841</x>
-     <y>542</y>
+     <x>180</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>592</x>
@@ -4837,8 +4841,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>SSL_listen()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1011</x>
-     <y>542</y>
+     <x>180</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>1037</x>
@@ -4853,8 +4857,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>SSL_disconnect()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>957</x>
-     <y>592</y>
+     <x>280</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>478</x>
@@ -4869,8 +4873,8 @@ A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
    <slot>SSL_send()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>882</x>
-     <y>641</y>
+     <x>280</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>605</x>
