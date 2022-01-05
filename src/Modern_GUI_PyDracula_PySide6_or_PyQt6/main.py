@@ -453,6 +453,9 @@ class MainWindow(QMainWindow):
             sub_process.kill()
             recv_thread.wait()
             recv_thread = None
+            widgets.plainTextEdit_16.appendPlainText("连接已终止")
+        else:
+            widgets.plainTextEdit_16.appendPlainText("不存在连接")
 
     def DH_send(self):
         global recv_thread, sub_process
@@ -499,6 +502,9 @@ class MainWindow(QMainWindow):
             sub_process.kill()
             recv_thread.wait()
             recv_thread = None
+            widgets.plainTextEdit_67.appendPlainText("连接已终止")
+        else:
+            widgets.plainTextEdit_67.appendPlainText("不存在连接")
 
     def SSL_send(self):
         global recv_thread, sub_process
