@@ -90,7 +90,7 @@ string encryptOnce(string s)
 
 #### 示意图
 
-![image-20220103214333885](DES加解密算法设计说明/image-20220103214333885.png)
+![image-20220103214333885](DES_explain/image-20220103214333885.png)
 
 ### 乘积变换（核心部分）
 
