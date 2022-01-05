@@ -88,9 +88,6 @@ string encryptOnce(string s)
 
 - 作用：将64位明文打乱重排
 
-#### 示意图
-
-![image-20220103214333885](DES_explain/image-20220103214333885.png)
 
 ### 乘积变换（核心部分）
 
