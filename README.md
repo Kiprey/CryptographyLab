@@ -1,5 +1,24 @@
 # CryptographyLab
 
+## 编译并运行
+
+```bash
+git clone git@github.com:Kiprey/CryptographyLab.git
+cd CryptographyLab
+
+cmake . -B build
+cd build
+make -j `nproc`
+
+pip3 install --user PySide6
+pip3 install --user pwntools
+pip3 install --user ctypes
+
+cd ../src/Modern_GUI_PyDracula_PySide6_or_PyQt6
+python3 main.py
+```
+
+
 ## 编译方式
 
 使用 `cmake . -B build` 创建 Makefile。

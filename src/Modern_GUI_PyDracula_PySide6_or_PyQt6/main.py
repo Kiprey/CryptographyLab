@@ -64,7 +64,7 @@ class RecvWorkerThread(QThread):
                 self.signal.emit(output) # 发射信号
                 #widgets.plainTextEdit_16.appendPlainText(line.decode())
 
-        recv_thread = None
+        print("RecvWorkerThread done")
         # widgets.plainTextEdit_19.setEnabled(True)
 
 
@@ -451,7 +451,7 @@ class MainWindow(QMainWindow):
         global recv_thread, sub_process
         if recv_thread: 
             sub_process.kill()
-            recv_thread.terminate()
+            recv_thread.wait()
             recv_thread = None
 
     def DH_send(self):
@@ -497,7 +497,7 @@ class MainWindow(QMainWindow):
         global recv_thread, sub_process
         if recv_thread: 
             sub_process.kill()
-            recv_thread.terminate()
+            recv_thread.wait()
             recv_thread = None
 
     def SSL_send(self):
